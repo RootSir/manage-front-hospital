@@ -218,7 +218,6 @@ export default {
           height: 60%;
           margin: 0 1% 0 1%;
           display: flex;
-          border: 1px solid #fff;
         }
         .right-box {
           width: 100%;

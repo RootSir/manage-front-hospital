@@ -177,36 +177,36 @@ export default {
   .box-table {
     width: 98%;
     margin-left: 1%;
-    margin-top: 1%;
+    // margin-top: 1%;
     font-size: var(--fontSize) !important;
   }
 }
-/*最外层透明*/
-::v-deep .el-table,
-::v-deep .el-table__expanded-cell {
-  background-color: transparent !important;
-}
-/* 表格内背景颜色 */
-::v-deep .el-table th,
-::v-deep .el-table tr,
-::v-deep .el-table td {
-  background-color: transparent !important;
-  border: 0; //去除表格
-  color: white;
-  // color: rgb(139, 196, 247);
-}
-/*去除底边框*/
-::v-deep.el-table td.el-table__cell {
-  border: 0;
-}
-::v-deep.el-table th.el-table__cell.is-leaf {
-  border: 0;
-}
+// /*最外层透明*/
+// ::v-deep .el-table,
+// ::v-deep .el-table__expanded-cell {
+//   background-color: transparent !important;
+// }
+// /* 表格内背景颜色 */
+// ::v-deep .el-table th,
+// ::v-deep .el-table tr,
+// ::v-deep .el-table td {
+//   background-color: transparent !important;
+//   border: 0; //去除表格
+//   color: white;
+//   // color: rgb(139, 196, 247);
+// }
+// /*去除底边框*/
+// ::v-deep.el-table td.el-table__cell {
+//   border: 0;
+// }
+// ::v-deep.el-table th.el-table__cell.is-leaf {
+//   border: 0;
+// }
 
-/* 去掉table 最底部的线 */
-::v-deep .el-table--border::after,
-::v-deep .el-table--group::after,
-::v-deep .el-table::before {
-  background-color: transparent !important;
-}
+// /* 去掉table 最底部的线 */
+// ::v-deep .el-table--border::after,
+// ::v-deep .el-table--group::after,
+// ::v-deep .el-table::before {
+//   background-color: transparent !important;
+// }
 </style>

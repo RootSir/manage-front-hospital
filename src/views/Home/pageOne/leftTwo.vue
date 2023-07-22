@@ -185,7 +185,6 @@ export default {
       } else {
         this.subheadings='成人银库'
       }
-      console.log( this.subheadings);
     },
     getList() {
       this.$axios
