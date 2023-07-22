@@ -4,6 +4,7 @@
     arrow="never"
     ref="cardShow"
     :interval="60000"
+    :autoplay="false"
   >
     <div class="prev">
       <img src="../../assets/images/left.png" @click="arrowClick('prev')" />
@@ -34,13 +35,14 @@
               :titleSize="titleSize"
               :labelSize="labelSize"
             />
-          </div>
-          <div class="right-box">
+            <div style="width: 3%;"></div>
             <One-RightOne
-              :title="'异 常 情 况'"
+              :title="'系 统 消 息'"
               :fontSize="fontSize"
               :titleSize="titleSize"
             />
+          </div>
+          <div class="right-box">
             <One-RightTwo
               :title="'公 共 通 知'"
               :fontSize="fontSize"
@@ -111,7 +113,7 @@ export default {
     return {
       year: null,
       //
-      fontSize: "15px",
+      fontSize: "17px",
       //
       titleSize: "22px",
       //
@@ -210,14 +212,16 @@ export default {
       .box-wrapper {
         width: 100%;
         height: calc(100% - 100px);
-        display: flex;
+        // display: flex;
         .left-box {
-          width: 48%;
-          height: 100%;
+          width: 100%;
+          height: 60%;
           margin: 0 1% 0 1%;
+          display: flex;
+          border: 1px solid #fff;
         }
         .right-box {
-          width: 48%;
+          width: 100%;
           height: 100%;
           margin: 0 1% 0 1%;
         }

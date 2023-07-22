@@ -131,7 +131,7 @@ export default {
 <style lang="less" scoped>
 .box-container {
   width: 100%;
-  height: 60%;
+  height: 100%;
   // margin-top: 1%;
   .box-table {
     width: 98%;

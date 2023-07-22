@@ -3,7 +3,7 @@
     <el-table
       class="box-table"
       ref="table"
-      :data="tableData"
+      :data="tableDatas"
       height="92%"
       :show-header="false"
       :style="{ '--fontSize': fontSize }"
@@ -22,7 +22,107 @@ export default {
     return {
       timer: null,
       //
-      tableData: []
+      tableData: [],
+      tableDatas: [
+        {
+          id: '1',
+          msgText: '目前智能柜正测试排班功能',
+          number: '公告1',
+          status: 1,
+          statusName:'正常'
+        },
+        {
+          id: '1',
+          msgText: '目前智能柜正测试排班功能',
+          number: '公告1',
+          status: 1,
+          statusName:'正常'
+        },
+        {
+          id: '1',
+          msgText: '目前智能柜正测试排班功能',
+          number: '公告1',
+          status: 1,
+          statusName:'正常'
+        },
+        {
+          id: '1',
+          msgText: '目前智能柜正测试排班功能',
+          number: '公告1',
+          status: 1,
+          statusName:'正常'
+        },
+        {
+          id: '1',
+          msgText: '目前智能柜正测试排班功能',
+          number: '公告1',
+          status: 1,
+          statusName:'正常'
+        },
+        {
+          id: '1',
+          msgText: '目前智能柜正测试排班功能',
+          number: '公告1',
+          status: 1,
+          statusName:'正常'
+        },
+        {
+          id: '1',
+          msgText: '目前智能柜正测试排班功能',
+          number: '公告1',
+          status: 1,
+          statusName:'正常'
+        },
+        {
+          id: '1',
+          msgText: '目前智能柜正测试排班功能',
+          number: '公告1',
+          status: 1,
+          statusName:'正常'
+        },
+        {
+          id: '1',
+          msgText: '目前智能柜正测试排班功能',
+          number: '公告1',
+          status: 1,
+          statusName:'正常'
+        },
+        {
+          id: '1',
+          msgText: '目前智能柜正测试排班功能',
+          number: '公告1',
+          status: 1,
+          statusName:'正常'
+        },
+        {
+          id: '1',
+          msgText: '目前智能柜正测试排班功能',
+          number: '公告1',
+          status: 1,
+          statusName:'正常'
+        },
+        {
+          id: '1',
+          msgText: '目前智能柜正测试排班功能',
+          number: '公告1',
+          status: 1,
+          statusName:'正常'
+        },
+        {
+          id: '1',
+          msgText: '目前智能柜正测试排班功能',
+          number: '公告1',
+          status: 1,
+          statusName:'正常'
+        },
+        {
+          id: '1',
+          msgText: '目前智能柜正测试排班功能',
+          number: '公告1',
+          status: 1,
+          statusName:'正常'
+        },
+      ]
     };
   },
   watch: {
@@ -55,6 +155,7 @@ export default {
             item.number =
               "公告" + (newArr.findIndex(v => v.msgText == item.msgText) + 1);
           });
+          console.log(this.tableData);
         })
         .catch(err => {});
     }

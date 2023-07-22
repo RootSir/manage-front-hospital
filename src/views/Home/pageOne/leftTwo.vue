@@ -1,11 +1,17 @@
 <template>
   <Box class="box-container" :title="title" :titleSize="titleSize">
-    <h1 :style="{ '--labelSize': labelSize }">{{ adult }}</h1>
+    <el-button
+      icon="el-icon-caret-right"
+      type="success"
+      circle
+      @click="toggleButton"
+    ></el-button>
+    <h1 :style="{ '--labelSize': labelSize }">{{subheadings}}</h1>
     <el-table
       class="box-table"
       ref="adultTable"
-      :data="adultTable"
-      height="58%"
+      :data="subheadings=='成人银库'?adultTable:childTable"
+      height="87%"
       :style="{ '--fontSize': fontSize }"
     >
       <el-table-column
@@ -54,8 +60,8 @@
         show-overflow-tooltip
       />
     </el-table>
-    <h2 :style="{ '--labelSize': labelSize }">{{ child }}</h2>
-    <el-table
+    <!-- <h2 :style="{ '--labelSize': labelSize }">{{ child }}</h2> -->
+    <!-- <el-table
       class="box-table"
       ref="childTable"
       :data="childTable"
@@ -107,11 +113,12 @@
         align="center"
         show-overflow-tooltip
       />
-    </el-table>
+    </el-table> -->
   </Box>
 </template>
 
 <script>
+import { text } from 'express';
 export default {
   name: "rightOne",
   props: ["title", "fontSize", "titleSize", "labelSize"],
@@ -130,7 +137,9 @@ export default {
       //
       adult: null,
       //
-      child: null
+      child: null,
+      //
+      subheadings:'成人银库'
     };
   },
   watch: {
@@ -169,6 +178,15 @@ export default {
     // }, 60000);
   },
   methods: {
+    // 切换按钮
+    toggleButton() {
+      if (this.subheadings=='成人银库') {
+        this.subheadings='儿科银库'
+      } else {
+        this.subheadings='成人银库'
+      }
+      console.log( this.subheadings);
+    },
     getList() {
       this.$axios
         .post("/apis/visualizing/getTeamGridStatistics")
@@ -200,10 +218,17 @@ export default {
 .box-container {
   width: 100%;
   height: 98%;
+  position: relative;
   .box-table {
     width: 98%;
     margin-left: 1%;
     font-size: var(--fontSize) !important;
+  }
+  .el-button {
+    position: absolute;
+    right: 1%;
+    top: 50%;
+    z-index: 99;
   }
 }
 
