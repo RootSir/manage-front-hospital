@@ -3,7 +3,7 @@
     <!-- <el-table
       class="box-table"
       ref="table"
-      :data="tableDatas"
+      :data="tableData"
       height="92%"
       :show-header="false"
       :style="{ '--fontSize': fontSize }"
@@ -12,20 +12,25 @@
       <el-table-column prop="msgText" />
     </el-table> -->
 
-    
     <vue-seamless-scroll
-      :data="listData"
+      :data="tableData"
       :class-option="classOption"
       class="warp"
     >
       <ul class="ul-item">
-        <li class="li-item" v-for="(item, index) in listData" :key="index">
-          {{ item }}
+        <li class="li-item" v-for="(item, index) in tableData" :key="index">
+          <div class="top">
+            {{ item.number }}
+          </div>
+          {{ item.msgText }}
         </li>
       </ul>
+      <!-- <div class="ul-item">
+        <div class="li-item" v-for="(item, index) in tableDatas" :key="index">
+          {{ item.number }}{{ item.msgText }}
+        </div>
+      </div> -->
     </vue-seamless-scroll>
-
-
   </Box>
 </template>
 
@@ -41,99 +46,107 @@ export default {
       tableDatas: [
         {
           id: "1",
-          msgText: "目前智能柜正测试排班功能",
+          msgText:
+            "目前智能柜正测试排班功能，目前智能柜正测试排班功能，目前智能柜正测试排班功能，",
           number: "公告1",
           status: 1,
           statusName: "正常"
         },
         {
           id: "1",
-          msgText: "目前智能柜正测试排班功能",
-          number: "公告1",
+          msgText: "目前智试排班功能",
+          number: "公告3",
+          status: 1,
+          statusName: "正常"
+        },
+        {
+          id: "1",
+          msgText: "目",
+          number: "公告4",
           status: 1,
           statusName: "正常"
         },
         {
           id: "1",
           msgText: "目前智能柜正测试排班功能",
-          number: "公告1",
+          number: "公告5",
+          status: 1,
+          statusName: "正常"
+        },
+        {
+          id: "1",
+          msgText: "目前智能柜正测班功能目前智能柜正测试排班功能",
+          number: "公告6",
+          status: 1,
+          statusName: "正常"
+        },
+        {
+          id: "1",
+          msgText: "目前智能柜正测试智能柜正排班功能",
+          number: "公告7",
+          status: 1,
+          statusName: "正常"
+        },
+        {
+          id: "1",
+          msgText: "目前智班功能柜正测试排能",
+          number: "公告8",
           status: 1,
           statusName: "正常"
         },
         {
           id: "1",
           msgText: "目前智能柜正测试排班功能",
-          number: "公告1",
+          number: "公告9",
           status: 1,
           statusName: "正常"
         },
         {
           id: "1",
           msgText: "目前智能柜正测试排班功能",
-          number: "公告1",
+          number: "公告10",
           status: 1,
           statusName: "正常"
         },
         {
           id: "1",
           msgText: "目前智能柜正测试排班功能",
-          number: "公告1",
+          number: "公告11",
           status: 1,
           statusName: "正常"
         },
         {
           id: "1",
           msgText: "目前智能柜正测试排班功能",
-          number: "公告1",
+          number: "公告12",
           status: 1,
           statusName: "正常"
         },
         {
           id: "1",
           msgText: "目前智能柜正测试排班功能",
-          number: "公告1",
+          number: "公告13",
           status: 1,
           statusName: "正常"
         },
         {
           id: "1",
           msgText: "目前智能柜正测试排班功能",
-          number: "公告1",
+          number: "公告14",
           status: 1,
           statusName: "正常"
         },
         {
           id: "1",
           msgText: "目前智能柜正测试排班功能",
-          number: "公告1",
+          number: "公告14",
           status: 1,
           statusName: "正常"
         },
         {
           id: "1",
           msgText: "目前智能柜正测试排班功能",
-          number: "公告1",
-          status: 1,
-          statusName: "正常"
-        },
-        {
-          id: "1",
-          msgText: "目前智能柜正测试排班功能",
-          number: "公告1",
-          status: 1,
-          statusName: "正常"
-        },
-        {
-          id: "1",
-          msgText: "目前智能柜正测试排班功能",
-          number: "公告1",
-          status: 1,
-          statusName: "正常"
-        },
-        {
-          id: "1",
-          msgText: "目前智能柜正测试排班功能",
-          number: "公告1",
+          number: "公告14",
           status: 1,
           statusName: "正常"
         }
@@ -141,7 +154,7 @@ export default {
       listData: [1, 2, 3, 4, 5, 6],
       classOption: {
         limitMoveNum: 2,
-        direction: 3
+        direction: 2
       }
     };
   },
@@ -191,33 +204,47 @@ export default {
 
 <style lang="less" scoped>
 .warp {
-    width: 95%;
-    height: 90%;
-    margin: 1% auto;
-    overflow: hidden;
-    ul {
-      list-style: none;
-      padding: 0;
-      margin: 0 auto;
-      &.ul-item {
-        display: flex;
-        .li-item {
-          width: 120px;
-          height: 120px;
-          margin-right: 10px;
-          line-height: 120px;
-          background-color: #999;
-          color: #fff;
-          text-align: center;
-          font-size: 30px;
-        }
+  width: 90%;
+  // height: 140px;
+  margin: 0 auto;
+  overflow: hidden;
+  // border: 1px solid #fff;
+  .ul-item {
+    display: flex;
+    // border: 1px solid #000;
+    .li-item {
+      // margin: 0 1%;
+      // width: 1rem;
+      // margin: 0 2%;
+      padding: 0 2%;
+      font-size: 0.1rem;
+      // border: 1px solid #000;
+      white-space: nowrap;
+      color: #fff;
+      font-size: .15rem;
+      .top{
+        font-size: .2rem;
       }
     }
   }
+  // ul {
+  //   list-style: none;
+  //   padding: 0;
+  //   margin: 0 auto;
+  //   &.ul-item {
+  //     display: flex;
+  //     border-color: #000;
+  //     .li-item {
+  //       background-color: #eb1010;
+  //       margin: 0 10%;
+  //     }
+  //   }
+  // }
+}
 
 .box-container {
   width: 100%;
-  height: 37%;
+  height: 100%;
   margin-top: 1%;
   .box-table {
     width: 98%;

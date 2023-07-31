@@ -29,18 +29,21 @@
         <One-Toptit ref="Toptit"></One-Toptit>
         <div class="box-wrapper">
           <div class="left-box">
-            <One-LeftTwo
-              :title="'银 箱 管 理'"
-              :fontSize="fontSize"
-              :titleSize="titleSize"
-              :labelSize="labelSize"
-            />
-            <div style="width: 3%;"></div>
-            <One-RightOne
-              :title="'系 统 消 息'"
-              :fontSize="fontSize"
-              :titleSize="titleSize"
-            />
+            <div class="box-left">
+              <One-LeftTwo
+                :title="'银 箱 管 理'"
+                :fontSize="fontSize"
+                :titleSize="titleSize"
+                :labelSize="labelSize"
+              />
+            </div>
+            <div class="box-right">
+              <One-RightOne
+                :title="'系 统 消 息'"
+                :fontSize="fontSize"
+                :titleSize="titleSize"
+              />
+            </div>
           </div>
           <div class="right-box">
             <One-RightTwo
@@ -216,8 +219,21 @@ export default {
         .left-box {
           width: 100%;
           height: 60%;
-          margin: 0 1% 0 1%;
+          // margin: 0 1% 0 1%;
           display: flex;
+          padding: 0 1%;  
+          // border: 1px solid #fff;
+          .box-left {
+            width: 50%;
+            height: 100%;
+            // border: 1px solid red;
+            margin-right: 3%;
+          }
+          .box-right {
+            width: 50%;
+            height: 100%;
+            // border: 1px solid red;
+          }
         }
         .right-box {
           width: 100%;

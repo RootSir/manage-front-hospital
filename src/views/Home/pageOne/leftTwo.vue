@@ -1,17 +1,17 @@
 <template>
   <Box class="box-container" :title="title" :titleSize="titleSize">
     <el-button
+      type="primary"
       icon="el-icon-caret-right"
-      type="success"
       circle
-      @click="toggleButton"
+      @click="switchData"
     ></el-button>
-    <h1 :style="{ '--labelSize': labelSize }">{{subheadings}}</h1>
+    <h1 :style="{ '--labelSize': labelSize }">{{ subheadings }}</h1>
     <el-table
       class="box-table"
       ref="adultTable"
-      :data="subheadings=='成人银库'?adultTable:childTable"
-      height="87%"
+      :data="subheadings == '成人银箱' ? adultTable : childTable"
+      height="80%"
       :style="{ '--fontSize': fontSize }"
     >
       <el-table-column
@@ -60,8 +60,8 @@
         show-overflow-tooltip
       />
     </el-table>
-    <!-- <h2 :style="{ '--labelSize': labelSize }">{{ child }}</h2> -->
-    <!-- <el-table
+    <!-- <h2 :style="{ '--labelSize': labelSize }">{{ child }}</h2>
+    <el-table
       class="box-table"
       ref="childTable"
       :data="childTable"
@@ -118,7 +118,6 @@
 </template>
 
 <script>
-import { text } from 'express';
 export default {
   name: "rightOne",
   props: ["title", "fontSize", "titleSize", "labelSize"],
@@ -138,8 +137,7 @@ export default {
       adult: null,
       //
       child: null,
-      //
-      subheadings:'成人银库'
+      subheadings: "成人银箱"
     };
   },
   watch: {
@@ -178,12 +176,11 @@ export default {
     // }, 60000);
   },
   methods: {
-    // 切换按钮
-    toggleButton() {
-      if (this.subheadings=='成人银库') {
-        this.subheadings='儿科银库'
+    switchData() {
+      if (this.subheadings == "成人银箱") {
+        this.subheadings = "儿科银箱";
       } else {
-        this.subheadings='成人银库'
+        this.subheadings = "成人银箱";
       }
     },
     getList() {
@@ -218,16 +215,16 @@ export default {
   width: 100%;
   height: 98%;
   position: relative;
+  .el-button {
+    position: absolute;
+    top: 50%;
+    right: 1%;
+    z-index: 99;
+  }
   .box-table {
     width: 98%;
     margin-left: 1%;
     font-size: var(--fontSize) !important;
-  }
-  .el-button {
-    position: absolute;
-    right: 1%;
-    top: 50%;
-    z-index: 99;
   }
 }
 
