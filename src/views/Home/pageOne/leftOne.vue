@@ -1,5 +1,10 @@
 <template>
-  <Box1 class="box-container" :title="title" :titleSize="titleSize">
+  <Box1
+    class="box-container"
+    :title="title"
+    :titleSize="titleSize"
+    ref="myComponent"
+  >
     <el-table
       class="box-table"
       ref="personTable"
@@ -7,6 +12,8 @@
       height="100%"
       :style="{ '--fontSize': fontSize }"
       :row-style="changeRow"
+      @cell-mouse-enter="handleMouseEnter"
+      @cell-mouse-leave="handleMouseLeave"
     >
       <el-table-column
         prop="userId"
@@ -40,12 +47,6 @@
         show-overflow-tooltip
         width="300"
       />
-      <el-table-column
-        prop="amount"
-        label="缴款金额"
-        align="center"
-        show-overflow-tooltip
-      />
     </el-table>
   </Box1>
 </template>
@@ -59,7 +60,12 @@ export default {
       //人员信息表格数据
       personList: [],
       //数据定时器
-      timer: null
+      timer: null,
+      pageNum: 1, // 当前页数
+      pageSize: 20, // 每页数量
+      threshold: 20, // 距离底部多少像素时触发加载
+      newPersonList: [], // 用于存放已加载的 item
+      count: 0
     };
   },
   watch: {
@@ -68,18 +74,81 @@ export default {
     }
   },
   created() {
-    this.getList();
+    this.getList(this.pageNum, this.pageSize);
   },
   mounted() {
-    /* 数据请求定时 */
-    this.timer = setInterval(() => {
-      this.getList();
-    }, 300000);
     /* 数据滚动 */
-    this.$tableScroll(this.$refs.personTable);
+    this.$tableScroll.tableScroll(this.$refs.personTable);
+    /* 监听当前页面滚动事件 */
+    const element = this.$refs.myComponent.$el;
+    element.addEventListener("scroll", this.throttleFun, true);
     /*  */
+    this.generateTimer();
   },
   methods: {
+    /* 鼠标移入停止滚动 */
+    handleMouseEnter() {
+      // this.$tableScroll.stopScroll();
+    },
+    /* 鼠标移出继续滚动 */
+    handleMouseLeave() {
+      // this.$tableScroll.tableScroll(this.$refs.personTable);
+    },
+    // 懒加载
+    handleScroll() {
+      // 标准浏览器中：定义一个形参event，但当事件触发的时候，并没有给event赋实际的值，
+      // 则浏览器会把”事件“的对象赋给这个形参e，这时这个e是个系统级的对象：事件；
+      const scrollTable = this.$refs.personTable.bodyWrapper;
+      const scrollDistance =
+        // 正文全文高
+        scrollTable.scrollHeight -
+        // 被卷去的高
+        scrollTable.scrollTop -
+        // 可见区域的宽度
+        scrollTable.clientHeight;
+      // 滚动条距离底部小于等于0证明已经到底了，可以请求接口了
+      if (scrollDistance == this.threshold) {
+        if (this.newPersonList.length < this.pageSize) {
+          this.pageNum = 1;
+        } else {
+          this.pageNum++;
+          this.getList(this.pageNum, this.pageSize);
+        }
+      }
+    },
+
+    // 节流
+    throttle(fn, wait) {
+      let context, args;
+      let previous = 0;
+      return function() {
+        let now = +new Date();
+        context = this;
+        args = arguments; // 取throttle执行作用域的this
+        if (now - previous > wait) {
+          fn.apply(context, args); // 用apply指向调用throttle的对象，相当于throttle.fn(args);
+          previous = now;
+        }
+      };
+    },
+
+    throttleFun() {
+      this.throttle(this.handleScroll(), 1000);
+    },
+    /*  */
+    generateTimer() {
+      this.timer = setInterval(() => {
+        this.pageNum = 1;
+        this.personList = [];
+        this.getList(this.pageNum, this.pageSize);
+        this.count++;
+        if (this.count === 5) {
+          clearInterval(this.timer);
+          this.count = 0;
+          this.generateTimer(); // 重新定义定时器并循环执行
+        }
+      }, 5 * 60 * 1000);
+    },
     /*  */
     changeRow({ row }) {
       if (
@@ -98,14 +167,18 @@ export default {
       }
     },
     /* 人员信息 */
-    getList() {
+    getList(pageNum, pageSize) {
       this.$axios
-        .post("/apis/visualizing/getWorkUserInfo")
+        .post("/apis/visualizing/getWorkUserInfo", {
+          pageNum: pageNum,
+          pageSize: pageSize
+        })
         .then(rs => {
           if (rs.data.statusCode != "200") {
             return;
           }
-          this.personList = rs.data.result;
+          this.personList = rs.data.result.rows;
+          this.personList = this.personList.concat(this.newPersonList);
         })
         .catch(err => {});
     }

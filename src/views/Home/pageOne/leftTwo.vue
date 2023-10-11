@@ -137,7 +137,8 @@ export default {
       adult: null,
       //
       child: null,
-      subheadings: "成人银箱"
+      subheadings: "成人银箱",
+      count: 0
     };
   },
   watch: {
@@ -152,9 +153,8 @@ export default {
     this.getList();
   },
   mounted() {
-    this.timer = setInterval(() => {
-      this.getList();
-    }, 300000);
+    this.generateTimer();
+
     // this.$tableScroll(this.$refs.adultTable);
     // this.$tableScroll(this.$refs.childTable);
 
@@ -176,6 +176,18 @@ export default {
     // }, 60000);
   },
   methods: {
+    /*  */
+    generateTimer() {
+      this.timer = setInterval(() => {
+        this.getList();
+        this.count++;
+        if (this.count === 5) {
+          clearInterval(this.timer);
+          this.count = 0;
+          this.generateTimer(); // 重新定义定时器并循环执行
+        }
+      }, 5 * 60 * 1000);
+    },
     switchData() {
       if (this.subheadings == "成人银箱") {
         this.subheadings = "儿科银箱";
@@ -212,9 +224,10 @@ export default {
 
 <style lang="less" scoped>
 .box-container {
-  width: 100%;
-  height: 98%;
+  width: 49%;
+  height: 100%;
   position: relative;
+  margin-left: 0.5%;
   .el-button {
     position: absolute;
     top: 50%;

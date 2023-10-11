@@ -17,7 +17,8 @@ export default {
       //
       chartData: [],
       //
-      year: null
+      year: null,
+      count: 0
     };
   },
   watch: {
@@ -33,11 +34,21 @@ export default {
   },
   mounted() {
     this.setBar();
-    this.timer = setInterval(() => {
-      this.getList(2, this.year);
-    }, 300000);
+    this.generateTimer();
   },
   methods: {
+    /*  */
+    generateTimer() {
+      this.timer = setInterval(() => {
+        this.getList(2, this.year);
+        this.count++;
+        if (this.count === 5) {
+          clearInterval(this.timer);
+          this.count = 0;
+          this.generateTimer(); // 重新定义定时器并循环执行
+        }
+      }, 5 * 60 * 1000);
+    },
     /*  */
     getList(type, year) {
       this.$axios
@@ -68,8 +79,16 @@ export default {
     },
     /*  */
     setBar() {
+      if (
+        this.myChart != null &&
+        this.myChart != "" &&
+        this.myChart != undefined
+      ) {
+        this.myChart.dispose(); //销毁
+      }
+
       let chartDom = this.$refs.bar;
-      let myChart = this.$echarts.init(chartDom);
+      this.myChart = this.$echarts.init(chartDom);
       let option;
       const colorList = [
         "#115FEA",
@@ -220,13 +239,14 @@ export default {
         ]
       };
 
-      myChart.setOption(option);
+      this.myChart.setOption(option);
+      const _this = this;
       window.addEventListener("resize", function() {
-        myChart.resize();
+        _this.myChart.resize();
       });
       this.$on("hook:destroyed", () => {
         window.removeEventListener("resize", function() {
-          myChart.resize();
+          _this.myChart.resize();
         });
       });
     }

@@ -28,24 +28,20 @@
       <div class="pageOne">
         <One-Toptit ref="Toptit"></One-Toptit>
         <div class="box-wrapper">
-          <div class="left-box">
-            <div class="box-left">
-              <One-LeftTwo
-                :title="'银 箱 管 理'"
-                :fontSize="fontSize"
-                :titleSize="titleSize"
-                :labelSize="labelSize"
-              />
-            </div>
-            <div class="box-right">
-              <One-RightOne
-                :title="'系 统 消 息'"
-                :fontSize="fontSize"
-                :titleSize="titleSize"
-              />
-            </div>
+          <div class="box-left">
+            <One-LeftTwo
+              :title="'银 箱 管 理'"
+              :fontSize="fontSize"
+              :titleSize="titleSize"
+              :labelSize="labelSize"
+            />
+            <One-RightOne
+              :title="'系 统 消 息'"
+              :fontSize="fontSize"
+              :titleSize="titleSize"
+            />
           </div>
-          <div class="right-box">
+          <div class="box-right">
             <One-RightTwo
               :title="'公 共 通 知'"
               :fontSize="fontSize"
@@ -215,30 +211,14 @@ export default {
       .box-wrapper {
         width: 100%;
         height: calc(100% - 100px);
-        // display: flex;
-        .left-box {
-          width: 100%;
-          height: 60%;
-          // margin: 0 1% 0 1%;
+        .box-left {
           display: flex;
-          padding: 0 1%;  
-          // border: 1px solid #fff;
-          .box-left {
-            width: 50%;
-            height: 100%;
-            // border: 1px solid red;
-            margin-right: 3%;
-          }
-          .box-right {
-            width: 50%;
-            height: 100%;
-            // border: 1px solid red;
-          }
-        }
-        .right-box {
           width: 100%;
-          height: 100%;
-          margin: 0 1% 0 1%;
+          height: 65%;
+        }
+        .box-right {
+          width: 100%;
+          height: 30%;
         }
       }
     }

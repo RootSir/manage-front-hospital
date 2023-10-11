@@ -1,180 +1,110 @@
 <template>
   <Box class="box-container" :title="title" :titleSize="titleSize">
-    <!-- <el-table
-      class="box-table"
-      ref="table"
-      :data="tableData"
-      height="92%"
-      :show-header="false"
-      :style="{ '--fontSize': fontSize }"
-    >
-      <el-table-column prop="number" width="90" />
-      <el-table-column prop="msgText" />
-    </el-table> -->
-
-    <vue-seamless-scroll
-      :data="tableData"
-      :class-option="classOption"
-      class="warp"
-    >
-      <ul class="ul-item">
-        <li class="li-item" v-for="(item, index) in tableData" :key="index">
-          <div class="top">
-            {{ item.number }}
-          </div>
-          {{ item.msgText }}
-        </li>
-      </ul>
-      <!-- <div class="ul-item">
-        <div class="li-item" v-for="(item, index) in tableDatas" :key="index">
-          {{ item.number }}{{ item.msgText }}
+    <div class="TopCard">
+      <!-- 小喇叭 -->
+      <!-- <i class="el-icon-s-opportunity" style="color:#606266" />
+      <span class="tips">告警提示：</span> -->
+      <!-- 滚动文字外层div，文字能展示的区域-->
+      <div class="noticeBox">
+        <!-- 滚动div，marginLeft变化-->
+        <div :style="'margin-left:' + marginLeft + 'px;white-space:nowrap'">
+          <span class="showNotice">{{ showNotice }}</span>
+          <!-- 不会展示，用来测量第二条与第一条重合时的长度 -->
+          <span class="notice">{{ notice }}</span>
         </div>
-      </div> -->
-    </vue-seamless-scroll>
+      </div>
+    </div>
   </Box>
 </template>
 
 <script>
 export default {
   name: "rightTwo",
-  props: ["title", "fontSize", "titleSize"],
+  props: ["title", "titleSize"],
   data() {
     return {
       timer: null,
       //
       tableData: [],
-      tableDatas: [
-        {
-          id: "1",
-          msgText:
-            "目前智能柜正测试排班功能，目前智能柜正测试排班功能，目前智能柜正测试排班功能，",
-          number: "公告1",
-          status: 1,
-          statusName: "正常"
-        },
-        {
-          id: "1",
-          msgText: "目前智试排班功能",
-          number: "公告3",
-          status: 1,
-          statusName: "正常"
-        },
-        {
-          id: "1",
-          msgText: "目",
-          number: "公告4",
-          status: 1,
-          statusName: "正常"
-        },
-        {
-          id: "1",
-          msgText: "目前智能柜正测试排班功能",
-          number: "公告5",
-          status: 1,
-          statusName: "正常"
-        },
-        {
-          id: "1",
-          msgText: "目前智能柜正测班功能目前智能柜正测试排班功能",
-          number: "公告6",
-          status: 1,
-          statusName: "正常"
-        },
-        {
-          id: "1",
-          msgText: "目前智能柜正测试智能柜正排班功能",
-          number: "公告7",
-          status: 1,
-          statusName: "正常"
-        },
-        {
-          id: "1",
-          msgText: "目前智班功能柜正测试排能",
-          number: "公告8",
-          status: 1,
-          statusName: "正常"
-        },
-        {
-          id: "1",
-          msgText: "目前智能柜正测试排班功能",
-          number: "公告9",
-          status: 1,
-          statusName: "正常"
-        },
-        {
-          id: "1",
-          msgText: "目前智能柜正测试排班功能",
-          number: "公告10",
-          status: 1,
-          statusName: "正常"
-        },
-        {
-          id: "1",
-          msgText: "目前智能柜正测试排班功能",
-          number: "公告11",
-          status: 1,
-          statusName: "正常"
-        },
-        {
-          id: "1",
-          msgText: "目前智能柜正测试排班功能",
-          number: "公告12",
-          status: 1,
-          statusName: "正常"
-        },
-        {
-          id: "1",
-          msgText: "目前智能柜正测试排班功能",
-          number: "公告13",
-          status: 1,
-          statusName: "正常"
-        },
-        {
-          id: "1",
-          msgText: "目前智能柜正测试排班功能",
-          number: "公告14",
-          status: 1,
-          statusName: "正常"
-        },
-        {
-          id: "1",
-          msgText: "目前智能柜正测试排班功能",
-          number: "公告14",
-          status: 1,
-          statusName: "正常"
-        },
-        {
-          id: "1",
-          msgText: "目前智能柜正测试排班功能",
-          number: "公告14",
-          status: 1,
-          statusName: "正常"
-        }
-      ],
-      listData: [1, 2, 3, 4, 5, 6],
-      classOption: {
-        limitMoveNum: 2,
-        direction: 2
-      }
+
+      // 公告展示（过长时会重复两遍）
+      showNotice: "",
+      // 用于公告过长时，获取重复两遍中第一遍的长度
+      notice: "",
+      // 公告初始位置
+      marginLeft: window.screen.width,
+      //
+      count: 0
     };
   },
-  watch: {
-    fontSize(newVal, oldVal) {
-      this.fontSize = newVal;
-    }
-  },
+  watch: {},
   created() {
     this.getList();
   },
   mounted() {
-    /*  */
-    this.timer = setInterval(() => {
-      this.getList();
-    }, 300000);
-    /*  */
-    this.$tableScroll(this.$refs.table);
+    this.generateTimer();
   },
   methods: {
+    /*  */
+    generateTimer() {
+      this.timer = setInterval(() => {
+        this.getList();
+        this.count++;
+        if (this.count === 5) {
+          clearInterval(this.timer);
+          this.count = 0;
+          this.generateTimer(); // 重新定义定时器并循环执行
+        }
+      }, 5 * 60 * 1000);
+    },
+    /*  */
+    startScroll() {
+      // this.tableData = ["这是一条公告信息", "公告二"];
+      this.tableData.forEach((val, index) => {
+        if (index === 0) {
+          this.showNotice += "【" + val.number + "】" + val.msgText;
+        } else {
+          this.showNotice +=
+            "\xa0\xa0\xa0\xa0\xa0\xa0【" + val.number + "】" + val.msgText;
+        }
+      });
+      console.log(this.tableData);
+      // 公告上面先赋值，再获取宽度
+      setTimeout(() => {
+        // 公告div长度
+        // var oneNoticeWidth = document.getElementsByClassName("showNotice")[0]
+        //   .offsetWidth;
+        // // 公告外层div长度
+        // var noticeBoxWidth = document.getElementsByClassName("noticeBox")[0]
+        //   .offsetWidth;
+        // 一条公告长度太大时，才滚动
+        // if (oneNoticeWidth > noticeBoxWidth) {
+        // 滚动公告需要将公告重复两遍进行滚动，两遍中间需要加空格
+        this.notice =
+          this.showNotice +
+          "\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0";
+        // 上面先赋值，再获取宽度
+        setTimeout(() => {
+          // 获取一遍加中间空格的长度，即左移时第二遍与第一遍完全重合时的长度
+          var oneNoticeAddEmptyWidth = document.getElementsByClassName(
+            "notice"
+          )[0].offsetWidth;
+          // 公告内容重复两遍
+          this.showNotice = this.notice + this.showNotice;
+          this.timer = setInterval(() => {
+            this.marginLeft -= 1;
+            // 第二遍与第一遍起始位置重合时（第一条已完全移到左侧隐藏），marginLeft置0，即回到第一条
+            if (this.marginLeft === -1 * oneNoticeAddEmptyWidth) {
+              this.marginLeft = 0;
+            }
+          }, 20);
+        }, 20);
+        // } else {
+        //   //公告并没有很长时不滚动
+        //   this.marginLeft = 0;
+        // }
+      }, 10);
+    },
     getList() {
       this.$axios
         .post("/apis/visualizing/queryAnnouncementInfo", {})
@@ -188,7 +118,7 @@ export default {
             item.number =
               "公告" + (newArr.findIndex(v => v.msgText == item.msgText) + 1);
           });
-          console.log(this.tableData);
+          this.startScroll();
         })
         .catch(err => {});
     }
@@ -203,82 +133,37 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.warp {
-  width: 90%;
-  // height: 140px;
-  margin: 0 auto;
-  overflow: hidden;
-  // border: 1px solid #fff;
-  .ul-item {
-    display: flex;
-    // border: 1px solid #000;
-    .li-item {
-      // margin: 0 1%;
-      // width: 1rem;
-      // margin: 0 2%;
-      padding: 0 2%;
-      font-size: 0.1rem;
-      // border: 1px solid #000;
-      white-space: nowrap;
-      color: #fff;
-      font-size: .15rem;
-      .top{
-        font-size: .2rem;
-      }
-    }
-  }
-  // ul {
-  //   list-style: none;
-  //   padding: 0;
-  //   margin: 0 auto;
-  //   &.ul-item {
-  //     display: flex;
-  //     border-color: #000;
-  //     .li-item {
-  //       background-color: #eb1010;
-  //       margin: 0 10%;
-  //     }
-  //   }
-  // }
-}
-
 .box-container {
-  width: 100%;
+  width: 99%;
   height: 100%;
   margin-top: 1%;
-  .box-table {
-    width: 98%;
-    margin-left: 1%;
-    // margin-top: 1%;
-    font-size: var(--fontSize) !important;
-  }
+  margin-left: 0.5%;
 }
-// /*最外层透明*/
-// ::v-deep .el-table,
-// ::v-deep .el-table__expanded-cell {
-//   background-color: transparent !important;
-// }
-// /* 表格内背景颜色 */
-// ::v-deep .el-table th,
-// ::v-deep .el-table tr,
-// ::v-deep .el-table td {
-//   background-color: transparent !important;
-//   border: 0; //去除表格
-//   color: white;
-//   // color: rgb(139, 196, 247);
-// }
-// /*去除底边框*/
-// ::v-deep.el-table td.el-table__cell {
-//   border: 0;
-// }
-// ::v-deep.el-table th.el-table__cell.is-leaf {
-//   border: 0;
+
+.TopCard {
+  width: 99%;
+  animation: shine 1s infinite linear;
+  overflow: hidden;
+  font-weight: bold;
+  margin-top: 1%;
+  margin-left: 0.5%;
+  font-size: 20px;
+  font-weight: bold;
+  color: #fff;
+}
+
+/* 公告title */
+// .tips {
+//   color: #606266;
+//   font-weight: bold;
 // }
 
-// /* 去掉table 最底部的线 */
-// ::v-deep .el-table--border::after,
-// ::v-deep .el-table--group::after,
-// ::v-deep .el-table::before {
-//   background-color: transparent !important;
-// }
+@keyframes shine {
+  0% {
+    background-position: -1px -1px;
+  }
+  100% {
+    background-position: -12px -12px;
+  }
+}
 </style>

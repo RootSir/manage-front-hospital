@@ -20,16 +20,15 @@ export default {
       dateStr: "",
       day: "",
       times: 300,
-      timers: null,
+      timer2: null,
       lastTime: null,
-      page: null
+      timer3: null,
+      //
+      count: 0
     };
   },
   methods: {
-    changPage(val) {
-      this.page = val;
-      this.$emit("changPage", this.page);
-    },
+    /*  */
     clock() {
       this.timer = setInterval(() => {
         const curDate = new Date();
@@ -46,13 +45,25 @@ export default {
         datetime,
         "YYYY-MM-DD HH:mm:ss"
       );
-      this.timers = setInterval(() => {
+      this.timer2 = setInterval(() => {
         this.times--;
         if (this.times <= 0) {
-          clearInterval(this.timers);
+          clearInterval(this.timer2);
           this.times = 300;
         }
       }, 1000);
+    },
+    /*  */
+    generateTimer() {
+      this.timer3 = setInterval(() => {
+        this.resetTime();
+        this.count++;
+        if (this.count === 5) {
+          clearInterval(this.timer3);
+          this.count = 0;
+          this.generateTimer(); // 重新定义定时器并循环执行
+        }
+      }, 5 * 60 * 1000);
     }
   },
   created() {
@@ -60,9 +71,7 @@ export default {
   },
   mounted() {
     this.clock();
-    this.timer = setInterval(() => {
-      this.resetTime();
-    }, 300000);
+    this.generateTimer();
   },
   beforeDestroy() {
     if (this.timer) {
@@ -91,6 +100,7 @@ export default {
   .subtips {
     color: #2a8ec9;
     font-size: 20px;
+    font-weight: bold;
     // line-height: 40px;
     // height: 0px;
     &.left-clock {
