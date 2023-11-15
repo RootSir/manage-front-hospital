@@ -63,9 +63,11 @@ export default {
       timer: null,
       pageNum: 1, // 当前页数
       pageSize: 20, // 每页数量
-      threshold: 20, // 距离底部多少像素时触发加载
+      threshold: 25, // 距离底部多少像素时触发加载
       newPersonList: [], // 用于存放已加载的 item
-      count: 0
+      count: 0,
+      //
+      isTriggered: false
     };
   },
   watch: {
@@ -106,6 +108,7 @@ export default {
         scrollTable.scrollTop -
         // 可见区域的宽度
         scrollTable.clientHeight;
+
       // 滚动条距离底部小于等于0证明已经到底了，可以请求接口了
       if (scrollDistance == this.threshold) {
         if (this.newPersonList.length < this.pageSize) {
@@ -177,7 +180,7 @@ export default {
           if (rs.data.statusCode != "200") {
             return;
           }
-          this.personList = rs.data.result.rows;
+          this.newPersonList = rs.data.result.rows;
           this.personList = this.personList.concat(this.newPersonList);
         })
         .catch(err => {});
