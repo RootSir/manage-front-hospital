@@ -38,7 +38,8 @@ export default {
   width: 100%;
   position: relative;
   background: url("../../assets/images/announcement.png") no-repeat;
-  background-size: 100% 100%;
+  background-size: 110% 100%;
+  background-position-x: 10%;
   .box-middle {
     width: 100%;
     height: 100%;

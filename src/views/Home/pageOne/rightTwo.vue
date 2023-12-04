@@ -79,9 +79,9 @@ export default {
 }
 
 .box-container span {
-  animation: scroll 25s linear infinite; /* 设置动画 */
+  animation: scroll 18s linear infinite; /* 设置动画 */
   float: right;
-  font-size: 25px;
+  font-size: 0.22rem;
   color: white;
 }
 
@@ -90,7 +90,7 @@ export default {
     transform: translateX(100%); /* 初始位置，将文本移动到容器最右侧 */
   }
   100% {
-    transform: translateX(-550%); /* 结束位置，将文本移动到容器最左侧 */
+    transform: translateX(-350%); /* 结束位置，将文本移动到容器最左侧 */
   }
 }
 </style>
