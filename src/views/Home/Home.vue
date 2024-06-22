@@ -4,6 +4,7 @@
     arrow="never"
     ref="cardShow"
     :interval="60000"
+    @change="change"
     :autoplay="false"
   >
     <div class="prev">
@@ -83,15 +84,19 @@
         </div>
       </div>
     </el-carousel-item>
+    <el-carousel-item class="container-carousel-item">
+      <fullScreen v-if="changeIndex===3"/>
+    </el-carousel-item>
   </el-carousel>
 </template>
 
 <script>
+import fullScreen from "../About/index.vue"
 export default {
   name: "Home",
   components: {
     /* 页面三 */
-
+    fullScreen,
     /* 页面一 */
     OneToptit: () => import("./pageOne/topBox"),
     OneLeftOne: () => import("./pageOne/leftOne"),
@@ -111,6 +116,7 @@ export default {
   data() {
     return {
       year: null,
+      changeIndex:1,
       //
       fontSize: "17px",
       //
@@ -150,6 +156,10 @@ export default {
   },
   methods: {
     /*  */
+    change(v){
+      this.changeIndex=v
+      console.log(v)
+    },  
     handleClick(type, year) {
       this.$refs.leftone.getList(type, year);
       this.$refs.lefttwo.getList(type, year);

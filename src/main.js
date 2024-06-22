@@ -18,6 +18,7 @@ import "videojs-flash"; // 要播放rtmp流, 就必须引入这哥们
 import hls from "videojs-contrib-hls";
 import scroll from "vue-seamless-scroll";
 import tableScroll from "./assets/js/tableScroll";
+
 Vue.use(scroll);
 Vue.use(hls);
 Vue.use(dataV);

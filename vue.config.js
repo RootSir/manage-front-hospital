@@ -7,7 +7,7 @@ module.exports = {
     host: "0.0.0.0",
     proxy: {
       "/apis": {
-        target: "http://192.168.3.75:18880/yinxiang",
+        target: "http://localhost:18880/yinxiang",
         changeOrigin: true,
         ws: true,
         pathRewrite: {
