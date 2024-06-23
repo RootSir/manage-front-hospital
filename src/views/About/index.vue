@@ -9,16 +9,16 @@
       <div class="flex1">
         <dv-border-box-12 class="bar-list" backgroundColor="#0f245d">
           <div class="border-box-title">取箱次数</div>
-          <ghyBar />
+          <ghyBar :operationType=2 :data="fetchBoxData" />
         </dv-border-box-12>
         <dv-border-box-12 class="bar-list" backgroundColor="#0f245d">
           <div class="border-box-title">存箱次数</div>
-          <ghyBar :color="['#62b2e6', '#57ed51', '#c3d894']" />
+          <ghyBar :operationType=1 :data="fetchBoxData"  :color="['#62b2e6', '#57ed51', '#c3d894']" />
          
         </dv-border-box-12>
         <dv-border-box-12 class="bar-list"  backgroundColor="#0f245d">
           <div class="border-box-title">异常次数</div>
-          <ghyBar :color="['#62b2e6', '#f76a68', '#c3d894']" />
+          <ghyBar :operationType=2 :data="fetchBoxData"  :color="['#62b2e6', '#f76a68', '#c3d894']" />
         </dv-border-box-12>
       </div>
       <div class="middle-content flex flex-column">
@@ -246,15 +246,15 @@
       <div class="flex1">
         <dv-border-box-12 class="bar-list" backgroundColor="#0f245d">
           <div class="border-box-title">门急诊缴款</div>
-          <ghyBar />
+          <ghyBar :operationType=2 :data="fetchBoxData"    />
         </dv-border-box-12>
         <dv-border-box-12 class="bar-list" backgroundColor="#0f245d">
           <div class="border-box-title">出入院缴款</div>
-          <ghyBar :color="['#62b2e6', '#57ed51', '#c3d894']" />
+          <ghyBar :operationType=2 :data="fetchBoxData"  :color="['#62b2e6', '#57ed51', '#c3d894']" />
         </dv-border-box-12>
         <dv-border-box-12 title="div" class="bar-list" backgroundColor="#0f245d">
           <div class="border-box-title">轧账管理</div>
-          <ghyBar :color="['#62b2e6', '#f76a68', '#c3d894']" />
+          <ghyBar :operationType=2 :data="fetchBoxData"  :color="['#62b2e6', '#f76a68', '#c3d894']" />
         </dv-border-box-12>
       </div>
     </div>
@@ -278,12 +278,68 @@ export default {
   destroyed() {
     console.log('About destroyed')
   },
+  data() {
+    return {
+      operationType: 1,
+      fetchBoxData: [],
+    }
+  },
+  methods: {
+    async getFetchBoxData() {
+      this.$axios
+        .post("/apis/visualizing/getDataLastSixMonths", {
+          operationType: this.operationType
+        })
+        .then(rs => {
+          if (rs.data.statusCode != "200") {
+            return;
+          }
+          this.fetchBoxData = rs.data.result.monthlyDataList;
+          // this.chartData = this.tableData.map(item => {
+          //   if (type == 1 || type == 2) {
+          //     return {
+          //       name: item.day,
+          //       value: item.amount
+          //     };
+          //   } else if (type == 3) {
+          //     return {
+          //       name: "第" + parseInt(item.day) + "季度",
+          //       value: item.amount
+          //     };
+          //   }
+          // });
+        })
+        .catch(err => {});
+    }
+  },
+//   methods: {
+//   async getFetchBoxData() {
+//     try {
+//       // 这里应该是您实际的API调用
+//       // const response = await axios.get('/api/fetchBoxData');
+//       // this.fetchBoxData = response.data;
+      
+//       // 暂时使用模拟数据
+//       this.fetchBoxData = [
+//         { date: "202401", currentPeriod: 100, samePeriod: 90, yoy: 11.11 },
+//         { date: "202402", currentPeriod: 120, samePeriod: 100, yoy: 20 },
+//         // ... 更多数据
+//       ];
+//     } catch (error) {
+//       console.error('Error fetching data:', error);
+//     }
+//   }
+// },
+  mounted() {
+    this.getFetchBoxData();
+  }
 }
 </script>
 
 <style  scoped lang="less">
 .flex {
   display: flex;
+
 }
 
 .flex-column {
