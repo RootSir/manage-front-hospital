@@ -9,59 +9,59 @@
       <div class="flex1">
         <dv-border-box-12 class="bar-list" backgroundColor="#0f245d">
           <div class="border-box-title">取箱次数</div>
-          <ghyBar :operationType=2 :data="fetchBoxData" />
+          <ghyBar :operationType=2 :data="fetchBoxData1" />
         </dv-border-box-12>
         <dv-border-box-12 class="bar-list" backgroundColor="#0f245d">
           <div class="border-box-title">存箱次数</div>
-          <ghyBar :operationType=1 :data="fetchBoxData"  :color="['#62b2e6', '#57ed51', '#c3d894']" />
+          <ghyBar :operationType=1 :data="fetchBoxData2"  :color="['#62b2e6', '#57ed51', '#c3d894']" />
          
         </dv-border-box-12>
         <dv-border-box-12 class="bar-list"  backgroundColor="#0f245d">
           <div class="border-box-title">异常次数</div>
-          <ghyBar :operationType=2 :data="fetchBoxData"  :color="['#62b2e6', '#f76a68', '#c3d894']" />
+          <ghyBar :operationType=3 :data="fetchBoxData3"  :color="['#62b2e6', '#f76a68', '#c3d894']" />
         </dv-border-box-12>
       </div>
       <div class="middle-content flex flex-column">
         <div class="top flex">
           <div class="detail-list-container">
             <div class="detail-list-box detail-list-box-left">
-              <p class="title">取箱业务量/人次</p>
+              <p class="title">取箱人次</p>
               <ul>
                 <li class="flex">
                   <p>今日取箱量</p>
-                  <p>14,56</p>
+                  <p>{{ singlefetchBoxData1.today }}</p>
                 </li>
                 <li class="flex">
                   <p>月累计</p>
-                  <p>14,56</p>
+                  <p>{{ singlefetchBoxData1.monthTotal }}</p>
                 </li>
                 <li class="flex">
                   <p>月同期</p>
-                  <p>14,56</p>
+                  <p>{{ singlefetchBoxData1.monthSamePeriod }}</p>
                 </li>
                 <li class="flex">
                   <p>季累计</p>
-                  <p>14,56</p>
+                  <p>{{ singlefetchBoxData1.quarterTotal }}</p>
                 </li>
                 <li class="flex">
                   <p>季同期</p>
-                  <p>14,56</p>
+                  <p>{{ singlefetchBoxData1.quarterSamePeriod }}</p>
                 </li>
                 <li class="flex">
                   <p>年累计</p>
-                  <p>14,56</p>
+                  <p>{{ singlefetchBoxData1.yearTotal }}</p>
                 </li>
                 <li class="flex">
                   <p>年同期</p>
-                  <p>14,56</p>
+                  <p>{{ singlefetchBoxData1.yearSamePeriod }}</p>
                 </li>
               </ul>
             </div>
             <div class="detail-list-box detail-list-box-left">
-              <p class="title">取箱业务量/人次</p>
+              <p class="title">存箱人次</p>
               <ul>
                 <li class="flex">
-                  <p>今日取箱量</p>
+                  <p>今日存箱量</p>
                   <p>14,56</p>
                 </li>
                 <li class="flex">
@@ -94,10 +94,10 @@
           </div>
           <div class="detail-list-container">
             <div class="detail-list-box detail-list-box-right">
-              <p class="title">取箱业务量/人次</p>
+              <p class="title">门急诊缴款</p>
               <ul>
                 <li class="flex">
-                  <p>今日取箱量</p>
+                  <p>今日缴款额</p>
                   <p>14,56</p>
                 </li>
                 <li class="flex">
@@ -127,10 +127,10 @@
               </ul>
             </div>
             <div class="detail-list-box detail-list-box-right">
-              <p class="title">取箱业务量/人次</p>
+              <p class="title">出入院缴款</p>
               <ul>
                 <li class="flex">
-                  <p>今日取箱量</p>
+                  <p>今日缴款额</p>
                   <p>14,56</p>
                 </li>
                 <li class="flex">
@@ -188,22 +188,22 @@
                     <img src="../../assets/icon1.png" alt="">
                   </div>
                 </dv-decoration-12>
-                <p class="title">门急诊均次收费/元</p>
+                <p class="title">异常人次</p>
                 <ul>
                   <li class="flex">
+                    <p>今日异常量</p>
+                    <p>14,56</p>
+                  </li>
+                  <li class="flex">
+                    <p>月累计</p>
+                    <p>14,56</p>
+                  </li>
+                  <li class="flex">
+                    <p>季累计</p>
+                    <p>14,56</p>
+                  </li>
+                  <li class="flex">
                     <p>年累计</p>
-                    <p>14,56</p>
-                  </li>
-                  <li class="flex">
-                    <p>年同化</p>
-                    <p>14,56</p>
-                  </li>
-                  <li class="flex">
-                    <p>去除药耗</p>
-                    <p>14,56</p>
-                  </li>
-                  <li class="flex">
-                    <p>去药耗年同比</p>
                     <p>14,56</p>
                   </li>
                 </ul>
@@ -218,22 +218,22 @@
                     <img src="../../assets/icon2.png" alt="">
                   </div>
                 </dv-decoration-12>
-                <p class="title">门急诊均次收费/元</p>
+                <p class="title">轧账金额</p>
                 <ul>
                   <li class="flex">
+                    <p>今日异常量</p>
+                    <p>14,56</p>
+                  </li>
+                  <li class="flex">
+                    <p>月累计</p>
+                    <p>14,56</p>
+                  </li>
+                  <li class="flex">
+                    <p>季累计</p>
+                    <p>14,56</p>
+                  </li>
+                  <li class="flex">
                     <p>年累计</p>
-                    <p>14,56</p>
-                  </li>
-                  <li class="flex">
-                    <p>年同化</p>
-                    <p>14,56</p>
-                  </li>
-                  <li class="flex">
-                    <p>去除药耗</p>
-                    <p>14,56</p>
-                  </li>
-                  <li class="flex">
-                    <p>去药耗年同比</p>
                     <p>14,56</p>
                   </li>
                 </ul>
@@ -246,15 +246,15 @@
       <div class="flex1">
         <dv-border-box-12 class="bar-list" backgroundColor="#0f245d">
           <div class="border-box-title">门急诊缴款</div>
-          <ghyBar :operationType=2 :data="fetchBoxData"    />
+          <ghyBar :operationType=4 :data="fetchBoxData4"    />
         </dv-border-box-12>
         <dv-border-box-12 class="bar-list" backgroundColor="#0f245d">
           <div class="border-box-title">出入院缴款</div>
-          <ghyBar :operationType=2 :data="fetchBoxData"  :color="['#62b2e6', '#57ed51', '#c3d894']" />
+          <ghyBar :operationType=5 :data="fetchBoxData5"  :color="['#62b2e6', '#57ed51', '#c3d894']" />
         </dv-border-box-12>
         <dv-border-box-12 title="div" class="bar-list" backgroundColor="#0f245d">
           <div class="border-box-title">轧账管理</div>
-          <ghyBar :operationType=2 :data="fetchBoxData"  :color="['#62b2e6', '#f76a68', '#c3d894']" />
+          <ghyBar :operationType=6 :data="fetchBoxData6"  :color="['#62b2e6', '#f76a68', '#c3d894']" />
         </dv-border-box-12>
       </div>
     </div>
@@ -281,58 +281,291 @@ export default {
   data() {
     return {
       operationType: 1,
-      fetchBoxData: [],
+      fetchBoxData1: [],
+      fetchBoxData2: [],
+      fetchBoxData3: [],
+      fetchBoxData4: [],
+      fetchBoxData5: [],
+      fetchBoxData6: [],
+
+      singlefetchBoxData1: {
+        today: '',
+        monthTotal: '',
+        monthSamePeriod: '',
+        quarterTotal: '',
+        quarterSamePeriod: '',
+        yearTotal: '',
+        yearSamePeriod: ''
+      },
+      singlefetchBoxData2: {
+        today: '',
+        monthTotal: '',
+        monthSamePeriod: '',
+        quarterTotal: '',
+        quarterSamePeriod: '',
+        yearTotal: '',
+        yearSamePeriod: ''
+      },
+      singlefetchBoxData3: {
+        today: '',
+        monthTotal: '',
+        monthSamePeriod: '',
+        quarterTotal: '',
+        quarterSamePeriod: '',
+        yearTotal: '',
+        yearSamePeriod: ''
+      },
+      singlefetchBoxData4: {
+        today: '',
+        monthTotal: '',
+        monthSamePeriod: '',
+        quarterTotal: '',
+        quarterSamePeriod: '',
+        yearTotal: '',
+        yearSamePeriod: ''
+      },
+      singlefetchBoxData5: {
+        today: '',
+        monthTotal: '',
+        monthSamePeriod: '',
+        quarterTotal: '',
+        quarterSamePeriod: '',
+        yearTotal: '',
+        yearSamePeriod: ''
+      },
+      singlefetchBoxData5: {
+        today: '',
+        monthTotal: '',
+        monthSamePeriod: '',
+        quarterTotal: '',
+        quarterSamePeriod: '',
+        yearTotal: '',
+        yearSamePeriod: ''
+      }
     }
   },
   methods: {
-    async getFetchBoxData() {
+    async getFetchBoxData1() {
       this.$axios
         .post("/apis/visualizing/getDataLastSixMonths", {
-          operationType: this.operationType
+          operationType: 1
         })
         .then(rs => {
           if (rs.data.statusCode != "200") {
             return;
           }
-          this.fetchBoxData = rs.data.result.monthlyDataList;
-          // this.chartData = this.tableData.map(item => {
-          //   if (type == 1 || type == 2) {
-          //     return {
-          //       name: item.day,
-          //       value: item.amount
-          //     };
-          //   } else if (type == 3) {
-          //     return {
-          //       name: "第" + parseInt(item.day) + "季度",
-          //       value: item.amount
-          //     };
-          //   }
-          // });
+          this.fetchBoxData1 = rs.data.result.monthlyDataList;
         })
         .catch(err => {});
-    }
+    },
+    async getFetchBoxData2() {
+      this.$axios
+        .post("/apis/visualizing/getDataLastSixMonths", {
+          operationType: 2
+        })
+        .then(rs => {
+          if (rs.data.statusCode != "200") {
+            return;
+          }
+          this.fetchBoxData2 = rs.data.result.monthlyDataList;
+        })
+        .catch(err => {});
+    },
+    async getFetchBoxData3() {
+      this.$axios
+        .post("/apis/visualizing/getDataLastSixMonths", {
+          operationType: 3
+        })
+        .then(rs => {
+          if (rs.data.statusCode != "200") {
+            return;
+          }
+          this.fetchBoxData3 = rs.data.result.monthlyDataList;
+        })
+        .catch(err => {});
+    },
+    async getFetchBoxData4() {
+      this.$axios
+        .post("/apis/visualizing/getDataLastSixMonths", {
+          operationType: 4
+        })
+        .then(rs => {
+          if (rs.data.statusCode != "200") {
+            return;
+          }
+          this.fetchBoxData4 = rs.data.result.monthlyDataList;
+        })
+        .catch(err => {});
+    },
+    async getFetchBoxData5() {
+      this.$axios
+        .post("/apis/visualizing/getDataLastSixMonths", {
+          operationType: 5
+        })
+        .then(rs => {
+          if (rs.data.statusCode != "200") {
+            return;
+          }
+          this.fetchBoxData5 = rs.data.result.monthlyDataList;
+        })
+        .catch(err => {});
+    },
+    async getFetchBoxData6() {
+      this.$axios
+        .post("/apis/visualizing/getDataLastSixMonths", {
+          operationType: 6
+        })
+        .then(rs => {
+          if (rs.data.statusCode != "200") {
+            return;
+          }
+          this.fetchBoxData6 = rs.data.result.monthlyDataList;
+        })
+        .catch(err => {});
+    },
+
+
+
+
+    async getSingleFetchBoxData1() {
+      try {
+        const response = await this.$axios.post("/apis/visualizing/getDataStatisticsSingle", {
+          operationType: 1  // 假设1代表取箱人次，您可能需要根据实际情况调整
+        });
+        
+        if (response.data.statusCode === 200) {
+          this.singlefetchBoxData1 = response.data.result;
+        } else {
+          console.error("Failed to fetch data:", response.data.message);
+        }
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    },
+    async getSingleFetchBoxData2() {
+      try {
+        const response = await this.$axios.post("/apis/visualizing/getDataStatisticsSingle", {
+          operationType: 2  // 假设1代表取箱人次，您可能需要根据实际情况调整
+        });
+        
+        if (response.data.statusCode === 200) {
+          this.singlefetchBoxData2 = response.data.result;
+        } else {
+          console.error("Failed to fetch data:", response.data.message);
+        }
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    },
+    async getSingleFetchBoxData3() {
+      try {
+        const response = await this.$axios.post("/apis/visualizing/getDataStatisticsSingle", {
+          operationType: 3 // 假设1代表取箱人次，您可能需要根据实际情况调整
+        });
+        
+        if (response.data.statusCode === 200) {
+          this.singlefetchBoxData3 = response.data.result;
+        } else {
+          console.error("Failed to fetch data:", response.data.message);
+        }
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    },
+    async getSingleFetchBoxData4() {
+      try {
+        const response = await this.$axios.post("/apis/visualizing/getDataStatisticsSingle", {
+          operationType: 4  // 假设1代表取箱人次，您可能需要根据实际情况调整
+        });
+        
+        if (response.data.statusCode === 200) {
+          this.singlefetchBoxData4 = response.data.result;
+        } else {
+          console.error("Failed to fetch data:", response.data.message);
+        }
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    },
+    async getSingleFetchBoxData5() {
+      try {
+        const response = await this.$axios.post("/apis/visualizing/getDataStatisticsSingle", {
+          operationType: 5 
+                });
+        
+        if (response.data.statusCode === 200) {
+          this.singlefetchBoxData5 = response.data.result;
+        } else {
+          console.error("Failed to fetch data:", response.data.message);
+        }
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    },
+    async getSingleFetchBoxData6() {
+      try {
+        const response = await this.$axios.post("/apis/visualizing/getDataStatisticsSingle", {
+          operationType: 6  // 假设1代表取箱人次，您可能需要根据实际情况调整
+        });
+        
+        if (response.data.statusCode === 200) {
+          this.singlefetchBoxData6 = response.data.result;
+        } else {
+          console.error("Failed to fetch data:", response.data.message);
+        }
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    },
+
+
+    startDataFetching() {
+      console.log("startDataFetching:");
+
+
+      this.getSingleFetchBoxData1();
+      this.getSingleFetchBoxData2();
+      this.getSingleFetchBoxData3();
+      this.getSingleFetchBoxData4();
+      this.getSingleFetchBoxData5();
+      this.getSingleFetchBoxData6();
+      // Call all fetch methods initially
+      this.getFetchBoxData1();
+      this.getFetchBoxData2();
+      this.getFetchBoxData3();
+      this.getFetchBoxData4();
+      this.getFetchBoxData5();
+      this.getFetchBoxData6();
+
+      // Set up intervals for each fetch method (5 minutes = 300000 milliseconds)
+      setInterval(this.getFetchBoxData1, 300000);
+      setInterval(this.getFetchBoxData2, 300000);
+      setInterval(this.getFetchBoxData3, 300000);
+      setInterval(this.getFetchBoxData4, 300000);
+      setInterval(this.getFetchBoxData5, 300000);
+      setInterval(this.getFetchBoxData6, 300000);
+
+      setInterval(this.getSingleFetchBoxData1, 300000);
+      setInterval(this.getSingleFetchBoxData2, 300000);
+      setInterval(this.getSingleFetchBoxData3, 300000);
+      setInterval(this.getSingleFetchBoxData4, 300000);
+      setInterval(this.getSingleFetchBoxData5, 300000);
+      setInterval(this.getSingleFetchBoxData6, 300000);
+    },
   },
-//   methods: {
-//   async getFetchBoxData() {
-//     try {
-//       // 这里应该是您实际的API调用
-//       // const response = await axios.get('/api/fetchBoxData');
-//       // this.fetchBoxData = response.data;
-      
-//       // 暂时使用模拟数据
-//       this.fetchBoxData = [
-//         { date: "202401", currentPeriod: 100, samePeriod: 90, yoy: 11.11 },
-//         { date: "202402", currentPeriod: 120, samePeriod: 100, yoy: 20 },
-//         // ... 更多数据
-//       ];
-//     } catch (error) {
-//       console.error('Error fetching data:', error);
-//     }
-//   }
-// },
   mounted() {
-    this.getFetchBoxData();
+    this.startDataFetching();
+  },
+  beforeDestroy() {
+    // Clear all intervals when component is destroyed
+    clearInterval(this.getFetchBoxData1);
+    clearInterval(this.getFetchBoxData2);
+    clearInterval(this.getFetchBoxData3);
+    clearInterval(this.getFetchBoxData4);
+    clearInterval(this.getFetchBoxData5);
+    clearInterval(this.getFetchBoxData6);
   }
+
 }
 </script>
 
