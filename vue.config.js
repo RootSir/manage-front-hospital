@@ -3,7 +3,7 @@ module.exports = {
   lintOnSave: false, // 关闭eslint语法检测
   devServer: {
     open: true, // 项目运行后打开浏览器
-    port: 8080,
+    port: 8081,
     host: "0.0.0.0",
     proxy: {
       "/apis": {

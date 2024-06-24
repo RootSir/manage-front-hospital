@@ -62,31 +62,31 @@
               <ul>
                 <li class="flex">
                   <p>今日存箱量</p>
-                  <p>14,56</p>
+                  <p>{{ singlefetchBoxData2.today }}</p>
                 </li>
                 <li class="flex">
                   <p>月累计</p>
-                  <p>14,56</p>
+                  <p>{{ singlefetchBoxData2.monthTotal }}</p>
                 </li>
                 <li class="flex">
                   <p>月同期</p>
-                  <p>14,56</p>
+                  <p>{{ singlefetchBoxData2.monthSamePeriod }}</p>
                 </li>
                 <li class="flex">
                   <p>季累计</p>
-                  <p>14,56</p>
+                  <p>{{ singlefetchBoxData2.quarterTotal }}</p>
                 </li>
                 <li class="flex">
                   <p>季同期</p>
-                  <p>14,56</p>
+                  <p>{{ singlefetchBoxData2.quarterSamePeriod }}</p>
                 </li>
                 <li class="flex">
                   <p>年累计</p>
-                  <p>14,56</p>
+                  <p>{{ singlefetchBoxData2.yearTotal }}</p>
                 </li>
                 <li class="flex">
                   <p>年同期</p>
-                  <p>14,56</p>
+                  <p>{{ singlefetchBoxData2.yearSamePeriod }}</p>
                 </li>
               </ul>
             </div>
@@ -97,32 +97,32 @@
               <p class="title">门急诊缴款</p>
               <ul>
                 <li class="flex">
-                  <p>今日缴款额</p>
-                  <p>14,56</p>
+                  <p>今日缴费额</p>
+                  <p>{{ singlefetchBoxData3.today }}</p>
                 </li>
                 <li class="flex">
                   <p>月累计</p>
-                  <p>14,56</p>
+                  <p>{{ singlefetchBoxData3.monthTotal }}</p>
                 </li>
                 <li class="flex">
                   <p>月同期</p>
-                  <p>14,56</p>
+                  <p>{{ singlefetchBoxData3.monthSamePeriod }}</p>
                 </li>
                 <li class="flex">
                   <p>季累计</p>
-                  <p>14,56</p>
+                  <p>{{ singlefetchBoxData3.quarterTotal }}</p>
                 </li>
                 <li class="flex">
                   <p>季同期</p>
-                  <p>14,56</p>
+                  <p>{{ singlefetchBoxData3.quarterSamePeriod }}</p>
                 </li>
                 <li class="flex">
                   <p>年累计</p>
-                  <p>14,56</p>
+                  <p>{{ singlefetchBoxData3.yearTotal }}</p>
                 </li>
                 <li class="flex">
                   <p>年同期</p>
-                  <p>14,56</p>
+                  <p>{{ singlefetchBoxData3.yearSamePeriod }}</p>
                 </li>
               </ul>
             </div>
@@ -130,32 +130,32 @@
               <p class="title">出入院缴款</p>
               <ul>
                 <li class="flex">
-                  <p>今日缴款额</p>
-                  <p>14,56</p>
+                  <p>今日缴费额</p>
+                  <p>{{ singlefetchBoxData4.today }}</p>
                 </li>
                 <li class="flex">
                   <p>月累计</p>
-                  <p>14,56</p>
+                  <p>{{ singlefetchBoxData4.monthTotal }}</p>
                 </li>
                 <li class="flex">
                   <p>月同期</p>
-                  <p>14,56</p>
+                  <p>{{ singlefetchBoxData4.monthSamePeriod }}</p>
                 </li>
                 <li class="flex">
                   <p>季累计</p>
-                  <p>14,56</p>
+                  <p>{{ singlefetchBoxData4.quarterTotal }}</p>
                 </li>
                 <li class="flex">
                   <p>季同期</p>
-                  <p>14,56</p>
+                  <p>{{ singlefetchBoxData4.quarterSamePeriod }}</p>
                 </li>
                 <li class="flex">
                   <p>年累计</p>
-                  <p>14,56</p>
+                  <p>{{ singlefetchBoxData4.yearTotal }}</p>
                 </li>
                 <li class="flex">
                   <p>年同期</p>
-                  <p>14,56</p>
+                  <p>{{ singlefetchBoxData4.yearSamePeriod }}</p>
                 </li>
               </ul>
             </div>
@@ -164,11 +164,11 @@
             <dv-decoration-9 style="width:100%;height:100%;" :dur="8">
               <div class="cool-ellipse">
                 <div class="cool-ellipse-content">
-                  <p class="title">08月22日收入</p>
-                  <p class="money">14,56万元</p>
-                  <p>68.98%</p>
+                  <p class="title">{{currentDate}}收入</p>
+                  <p class="money">{{singlefetchBoxData7.today}}元</p>
+                  <!-- <p>68.98%</p>
                   <el-progress :text-inside="true" :stroke-width="26" :percentage="70"></el-progress>
-                  <p>总体执行率</p>
+                  <p>总体执行率</p> -->
                 </div>
 
               </div>
@@ -192,19 +192,19 @@
                 <ul>
                   <li class="flex">
                     <p>今日异常量</p>
-                    <p>14,56</p>
+                    <p>{{singlefetchBoxData5.today}}</p>
                   </li>
                   <li class="flex">
                     <p>月累计</p>
-                    <p>14,56</p>
+                    <p>{{singlefetchBoxData5.monthTotal}}</p>
                   </li>
                   <li class="flex">
                     <p>季累计</p>
-                    <p>14,56</p>
+                    <p>{{singlefetchBoxData5.quarterTotal}}</p>
                   </li>
                   <li class="flex">
                     <p>年累计</p>
-                    <p>14,56</p>
+                    <p>{{singlefetchBoxData5.yearTotal}}</p>
                   </li>
                 </ul>
               </div>
@@ -221,20 +221,20 @@
                 <p class="title">轧账金额</p>
                 <ul>
                   <li class="flex">
-                    <p>今日异常量</p>
-                    <p>14,56</p>
+                    <p>今日金额</p>
+                    <p>{{singlefetchBoxData6.today}}</p>
                   </li>
                   <li class="flex">
                     <p>月累计</p>
-                    <p>14,56</p>
+                    <p>{{singlefetchBoxData6.monthTotal}}</p>
                   </li>
                   <li class="flex">
                     <p>季累计</p>
-                    <p>14,56</p>
+                    <p>{{singlefetchBoxData6.quarterTotal}}</p>
                   </li>
                   <li class="flex">
                     <p>年累计</p>
-                    <p>14,56</p>
+                    <p>{{singlefetchBoxData6.yearTotal}}</p>
                   </li>
                 </ul>
               </div>
@@ -288,6 +288,7 @@ export default {
       fetchBoxData5: [],
       fetchBoxData6: [],
 
+      currentDate: '',
       singlefetchBoxData1: {
         today: '',
         monthTotal: '',
@@ -333,7 +334,16 @@ export default {
         yearTotal: '',
         yearSamePeriod: ''
       },
-      singlefetchBoxData5: {
+      singlefetchBoxData6: {
+        today: '',
+        monthTotal: '',
+        monthSamePeriod: '',
+        quarterTotal: '',
+        quarterSamePeriod: '',
+        yearTotal: '',
+        yearSamePeriod: ''
+      },
+      singlefetchBoxData7: {
         today: '',
         monthTotal: '',
         monthSamePeriod: '',
@@ -345,6 +355,12 @@ export default {
     }
   },
   methods: {
+    getCurrentDate() {
+      const date = new Date();
+      const month = String(date.getMonth() + 1).padStart(2, '0');
+      const day = String(date.getDate()).padStart(2, '0');
+      return `${month}月${day}日`;
+    },
     async getFetchBoxData1() {
       this.$axios
         .post("/apis/visualizing/getDataLastSixMonths", {
@@ -517,18 +533,33 @@ export default {
         console.error("Error fetching data:", error);
       }
     },
-
+    async getSingleFetchBoxData7() {
+      try {
+        const response = await this.$axios.post("/apis/visualizing/getDataStatisticsSingle", {
+          operationType: 7  // 假设1代表取箱人次，您可能需要根据实际情况调整
+        });
+        
+        if (response.data.statusCode === 200) {
+          this.singlefetchBoxData7 = response.data.result;
+        } else {
+          console.error("Failed to fetch data:", response.data.message);
+        }
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    },
 
     startDataFetching() {
       console.log("startDataFetching:");
 
-
+      this.currentDate = this.getCurrentDate();
       this.getSingleFetchBoxData1();
       this.getSingleFetchBoxData2();
       this.getSingleFetchBoxData3();
       this.getSingleFetchBoxData4();
       this.getSingleFetchBoxData5();
       this.getSingleFetchBoxData6();
+      this.getSingleFetchBoxData7();
       // Call all fetch methods initially
       this.getFetchBoxData1();
       this.getFetchBoxData2();
@@ -536,7 +567,6 @@ export default {
       this.getFetchBoxData4();
       this.getFetchBoxData5();
       this.getFetchBoxData6();
-
       // Set up intervals for each fetch method (5 minutes = 300000 milliseconds)
       setInterval(this.getFetchBoxData1, 300000);
       setInterval(this.getFetchBoxData2, 300000);
@@ -551,6 +581,8 @@ export default {
       setInterval(this.getSingleFetchBoxData4, 300000);
       setInterval(this.getSingleFetchBoxData5, 300000);
       setInterval(this.getSingleFetchBoxData6, 300000);
+      setInterval(this.getSingleFetchBoxData7, 300000);
+
     },
   },
   mounted() {
