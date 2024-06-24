@@ -693,12 +693,12 @@ export default {
     color: #f9fd49;
     font-size: 0.12rem;
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 5px;
   }
 
   li {
     justify-content: space-between;
-    line-height: 0.2rem;
+    line-height: 0.166rem;
 
     p {
       font-size: 0.08rem;
