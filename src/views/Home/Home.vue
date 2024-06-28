@@ -52,7 +52,7 @@
         </div>
       </div>
     </el-carousel-item>
-    <el-carousel-item class="container-carousel-item">
+    <!-- <el-carousel-item class="container-carousel-item">
       <div class="pageTwo">
         <Two-Toptit ref="Toptit"></Two-Toptit>
         <div class="box-wrapper">
@@ -83,10 +83,10 @@
           </div>
         </div>
       </div>
-    </el-carousel-item>
+    </el-carousel-item> -->
     <el-carousel-item class="container-carousel-item">
-      <fullScreen v-if="changeIndex===3"/>
-    </el-carousel-item>
+      <fullScreen v-if="changeIndex===2"/>
+    </el-carousel-item> 
   </el-carousel>
 </template>
 
