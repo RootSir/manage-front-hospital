@@ -1,6 +1,6 @@
 <template>
   <div class="center-wraper">
-    <h1 class="sys-title">财 务 收 费 数 据 大 屏</h1>
+    <h1 class="sys-title">财 务 收 费 运 营 监 测 数 据 大 屏</h1>
     <div class="subtips left-clock">
       最近更新:{{ lastTime }} {{ times }}s后刷新数据
     </div>
@@ -83,6 +83,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
+
 .center-wraper {
   width: 100%;
   height: 100px;
@@ -91,7 +92,7 @@ export default {
   background-size: 100% 100%;
   .sys-title {
     line-height: 70px;
-    font-size: 45px;
+    font-size: 35px;
     text-align: center;
     font-weight: bold;
     color: #fff;

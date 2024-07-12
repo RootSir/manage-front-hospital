@@ -10,7 +10,7 @@
     <el-table
       class="box-table"
       ref="adultTable"
-      :data="subheadings == '成人银箱' ? adultTable : childTable"
+      :data="subheadings == '门急诊' ? adultTable : childTable"
       height="80%"
       :style="{ '--fontSize': fontSize }"
     >
@@ -137,7 +137,7 @@ export default {
       adult: null,
       //
       child: null,
-      subheadings: "成人银箱",
+      subheadings: "门急诊",
       count: 0
     };
   },
@@ -189,10 +189,10 @@ export default {
       }, 5 * 60 * 1000);
     },
     switchData() {
-      if (this.subheadings == "成人银箱") {
-        this.subheadings = "儿科银箱";
+      if (this.subheadings == "门急诊") {
+        this.subheadings = "出入院";
       } else {
-        this.subheadings = "成人银箱";
+        this.subheadings = "门急诊";
       }
     },
     getList() {
