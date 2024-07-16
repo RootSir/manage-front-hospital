@@ -3,9 +3,9 @@
     class="container-carousel-main"
     arrow="never"
     ref="cardShow"
-    :interval="60000"
+    :interval="20000"
     @change="change"
-    :autoplay="false"
+    :autoplay="true"
   >
     <div class="prev">
       <img src="../../assets/images/left.png" @click="arrowClick('prev')" />
@@ -92,36 +92,29 @@
 
 <script>
 import fullScreen from "../About/index.vue"
+
 export default {
   name: "Home",
   components: {
-    /* 页面三 */
     fullScreen,
-    /* 页面一 */
     OneToptit: () => import("./pageOne/topBox"),
     OneLeftOne: () => import("./pageOne/leftOne"),
     OneLeftTwo: () => import("./pageOne/leftTwo"),
     OneRightOne: () => import("./pageOne/rightOne"),
     OneRightTwo: () => import("./pageOne/rightTwo"),
-    /* 页面二 */
     TwoToptit: () => import("./pageTwo/topBox"),
     TwoLeftOne: () => import("./pageTwo/leftOne"),
     TwoLeftTwo: () => import("./pageTwo/leftTwo"),
-
     TwoCenterOne: () => import("./pageTwo/centerOne"),
-
     TwoRightOne: () => import("./pageTwo/rightOne"),
     TwoRightTwo: () => import("./pageTwo/rightTwo")
   },
   data() {
     return {
       year: null,
-      changeIndex:1,
-      //
+      changeIndex: 1,
       fontSize: "17px",
-      //
       titleSize: "22px",
-      //
       labelSize: "20px"
     };
   },
@@ -129,37 +122,41 @@ export default {
     const date = new Date();
     this.year = date.getFullYear();
 
-    // 可视区域的高度
-    const clientHeight =
-      document.documentElement.clientHeight || document.body.clientHeight;
-    // screen是window的属性方法，window.screen可省略window，指的是窗口
-    this.isFullScreen = screen.height == clientHeight;
-    /*  */
-    window.onresize = () => {
-      return (() => {
-        // 可视区域的高度
-        const clientHeight =
-          document.documentElement.clientHeight || document.body.clientHeight;
-        // screen是window的属性方法，window.screen可省略window，指的是窗口
-        this.isFullScreen = screen.height == clientHeight;
-        if (this.isFullScreen) {
-          this.fontSize = "18px";
-          this.titleSize = "28px";
-          this.labelSize = "25px";
-        } else {
-          this.fontSize = "15px";
-          this.titleSize = "22px";
-          this.labelSize = "20px";
-        }
-      })();
-    };
+    this.checkFullscreen();
+    window.onresize = this.checkFullscreen;
+    document.addEventListener('fullscreenchange', this.onFullscreenChange);
+  },
+  beforeDestroy() {
+    document.removeEventListener('fullscreenchange', this.onFullscreenChange);
   },
   methods: {
-    /*  */
-    change(v){
-      this.changeIndex=v
-      console.log(v)
-    },  
+    checkFullscreen() {
+      const clientHeight = document.documentElement.clientHeight || document.body.clientHeight;
+      this.isFullScreen = screen.height == clientHeight;
+      if (this.isFullScreen) {
+        this.fontSize = "18px";
+        this.titleSize = "28px";
+        this.labelSize = "25px";
+      } else {
+        this.fontSize = "15px";
+        this.titleSize = "22px";
+        this.labelSize = "20px";
+      }
+    },
+    onFullscreenChange() {
+      this.checkFullscreen();
+      this.restartAutoplay();
+    },
+    restartAutoplay() {
+      if (this.$refs.cardShow) {
+        this.$refs.cardShow.pause();
+        this.$refs.cardShow.play();
+      }
+    },
+    change(v) {
+      this.changeIndex = v;
+      console.log(v);
+    },
     handleClick(type, year) {
       this.$refs.leftone.getList(type, year);
       this.$refs.lefttwo.getList(type, year);
@@ -167,7 +164,6 @@ export default {
       this.$refs.rightone.getList(type, year);
       this.$refs.righttwo.getList(type, year);
     },
-    /*  */
     arrowClick(val) {
       if (val === "next") {
         this.$refs.cardShow.next();
@@ -175,11 +171,10 @@ export default {
         this.$refs.cardShow.prev();
       }
     }
-  },
-  created() {},
-  beforeDestroy() {}
+  }
 };
 </script>
+
 
 <style lang="less" scoped>
 .container-carousel-main {

@@ -154,21 +154,16 @@ export default {
     },
     /*  */
     changeRow({ row }) {
-      if (
-        row.amount !== "" &&
-        row.amount !== null &&
-        row.amount !== undefined
-      ) {
-        // 变颜色的条件
-        return {
-          color: "#fda01e" // 这个return的就是样式 可以是color 也可以是backgroundColor
-        };
-      } else {
-        return {
-          color: "white" // 这个return的就是样式 可以是color 也可以是backgroundColor
-        };
-      }
-    },
+  if (row && 'amount' in row && row.amount !== "" && row.amount !== null) {
+    return {
+      color: "#fda01e"
+    };
+  } else {
+    return {
+      color: "white"
+    };
+  }
+},
     /* 人员信息 */
     getList(pageNum, pageSize) {
       this.$axios
