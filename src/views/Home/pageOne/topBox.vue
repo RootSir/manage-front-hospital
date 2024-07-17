@@ -40,19 +40,24 @@ export default {
       }, 1000);
     },
     resetTime() {
-      const datetime = new Date();
-      this.lastTime = this.$options.filters.dateformat(
-        datetime,
-        "YYYY-MM-DD HH:mm:ss"
-      );
-      this.timer2 = setInterval(() => {
-        this.times--;
-        if (this.times <= 0) {
-          clearInterval(this.timer2);
-          this.times = 300;
-        }
-      }, 1000);
-    },
+  const datetime = new Date();
+  this.lastTime = this.$options.filters.dateformat(
+    datetime,
+    "YYYY-MM-DD HH:mm:ss"
+  );
+  // 清除旧的计时器
+  if (this.timer2) {
+    clearInterval(this.timer2);
+  }
+  this.times = 300;
+  this.timer2 = setInterval(() => {
+    this.times--;
+    if (this.times <= 0) {
+      clearInterval(this.timer2);
+      this.timer2 = null;
+    }
+  }, 1000);
+},
     /*  */
     generateTimer() {
       this.timer3 = setInterval(() => {
@@ -74,11 +79,19 @@ export default {
     this.generateTimer();
   },
   beforeDestroy() {
-    if (this.timer) {
-      clearInterval(this.timer);
-      this.timer = null;
-    }
+  if (this.timer) {
+    clearInterval(this.timer);
+    this.timer = null;
   }
+  if (this.timer2) {
+    clearInterval(this.timer2);
+    this.timer2 = null;
+  }
+  if (this.timer3) {
+    clearInterval(this.timer3);
+    this.timer3 = null;
+  }
+}
 };
 </script>
 
