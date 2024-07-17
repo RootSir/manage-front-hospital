@@ -1,9 +1,9 @@
 <template>
   <div class="flex flex-column full-screen" style="width: 98%;
     height: 100%">
-    <div class="header flex">
+    <!-- <div class="header flex">
       <topBox />
-    </div>
+    </div> -->
     <div class="about flex flex1">
       <!-- <img src="../../assets/banner.png" alt="" srcset="" style="height: 1600px;"> -->
       <div class="flex1">
@@ -262,7 +262,7 @@
 </template>
 
 <script>
-import topBox from '../Home/pageTwo/topBox.vue'
+import topBox from '../Home/pageOne/topBox.vue'
 import ghyBar from './components/ghyBar.vue';
 import scheduleBar from './components/scheduleBar.vue';
 export default {

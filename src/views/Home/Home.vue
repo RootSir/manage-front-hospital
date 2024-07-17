@@ -85,7 +85,11 @@
       </div>
     </el-carousel-item> -->
     <el-carousel-item class="container-carousel-item">
-      <fullScreen v-if="changeIndex===2"/>
+      <div class="pageThree">
+        <One-Toptit ref="Toptit"></One-Toptit>
+        <fullScreen v-if="changeIndex===2"/>
+
+      </div>
     </el-carousel-item> 
   </el-carousel>
 </template>
