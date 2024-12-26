@@ -1,97 +1,46 @@
 <template>
-  <el-carousel
-    class="container-carousel-main"
-    arrow="never"
-    ref="cardShow"
-    :interval="20000"
-    @change="change"
-    :autoplay="true"
-  >
-    <div class="prev">
-      <img src="../../assets/images/left.png" @click="arrowClick('prev')" />
-    </div>
-    <div class="next">
-      <img src="../../assets/images/right.png" @click="arrowClick('next')" />
-    </div>
-    <el-carousel-item class="container-carousel-item">
-      <div class="pageThree">
-        <One-Toptit ref="Toptit"></One-Toptit>
-        <div class="box-wrapper">
-          <One-LeftOne
-            :title="'人 员 信 息'"
-            :fontSize="fontSize"
-            :titleSize="titleSize"
-          />
-        </div>
+  <div class="home-container">
+    <el-carousel class="container-carousel-main" arrow="never" ref="cardShow" :interval="20000" @change="change"
+      :autoplay="true">
+      <div class="prev">
+        <img src="../../assets/images/left.png" @click="arrowClick('prev')" />
       </div>
-    </el-carousel-item>
-    <el-carousel-item class="container-carousel-item">
-      <div class="pageOne">
-        <One-Toptit ref="Toptit"></One-Toptit>
-        <div class="box-wrapper">
-          <div class="box-left">
-            <One-LeftTwo
-              :title="'银 箱 管 理'"
-              :fontSize="fontSize"
-              :titleSize="titleSize"
-              :labelSize="labelSize"
-            />
-            <One-RightOne
-              :title="'系 统 消 息'"
-              :fontSize="fontSize"
-              :titleSize="titleSize"
-            />
-          </div>
-          <div class="box-right">
-            <One-RightTwo
-              :title="'公 共 通 知'"
-              :fontSize="fontSize"
-              :titleSize="titleSize"
-            />
-          </div>
-        </div>
+      <div class="next">
+        <img src="../../assets/images/right.png" @click="arrowClick('next')" />
       </div>
-    </el-carousel-item>
-    <!-- <el-carousel-item class="container-carousel-item">
-      <div class="pageTwo">
-        <Two-Toptit ref="Toptit"></Two-Toptit>
-        <div class="box-wrapper">
-          <div class="left-box">
-            <Two-LeftOne :title="'异 常 情 况 次 数'" ref="leftone" />
-            <Two-LeftTwo :title="'换 班 次 数'" ref="lefttwo" />
-          </div>
-          <div class="center-box">
-            <div class="center-top">
-              <el-button style="float:left" @click="handleClick(2, year)"
-                >月</el-button
-              >
-              <el-button style="margin-left:34%" @click="handleClick(3, year)"
-                >季</el-button
-              >
-              <el-button style="float:right" @click="handleClick(1, '')"
-                >年</el-button
-              >
-            </div>
 
-            <div class="center-main">
-              <Two-CenterOne ref="centerone" />
+      <el-carousel-item class="container-carousel-item">
+        <div class="pageThree">
+          <One-Toptit ref="Toptit"></One-Toptit>
+          <div class="box-wrapper">
+            <One-LeftOne :title="'人 员 信 息'" :fontSize="fontSize" :titleSize="titleSize" />
+          </div>
+        </div>
+      </el-carousel-item>
+
+      <el-carousel-item class="container-carousel-item">
+        <div class="pageOne">
+          <One-Toptit ref="Toptit"></One-Toptit>
+          <div class="box-wrapper">
+            <div class="box-left">
+              <One-LeftTwo :title="'银 箱 管 理'" :fontSize="fontSize" :titleSize="titleSize" :labelSize="labelSize" />
+              <One-RightOne :title="'系 统 消 息'" :fontSize="fontSize" :titleSize="titleSize" />
+            </div>
+            <div class="box-right">
+              <One-RightTwo :title="'公 共 通 知'" :fontSize="fontSize" :titleSize="titleSize" />
             </div>
           </div>
-          <div class="right-box">
-            <Two-RightOne :title="'现 金 缴 款 金 额 汇 总'" ref="rightone" />
-            <Two-RightTwo :title="'换 零 金 额 汇 总'" ref="righttwo" />
-          </div>
         </div>
-      </div>
-    </el-carousel-item> -->
-    <el-carousel-item class="container-carousel-item">
-      <div class="pageThree">
-        <One-Toptit ref="Toptit"></One-Toptit>
-        <fullScreen v-if="changeIndex===2"/>
+      </el-carousel-item>
 
-      </div>
-    </el-carousel-item> 
-  </el-carousel>
+      <el-carousel-item class="container-carousel-item">
+        <div class="pageThree">
+          <One-Toptit ref="Toptit"></One-Toptit>
+          <fullScreen v-if="changeIndex === 2" />
+        </div>
+      </el-carousel-item>
+    </el-carousel>
+  </div>
 </template>
 
 <script>
@@ -106,12 +55,6 @@ export default {
     OneLeftTwo: () => import("./pageOne/leftTwo"),
     OneRightOne: () => import("./pageOne/rightOne"),
     OneRightTwo: () => import("./pageOne/rightTwo"),
-    TwoToptit: () => import("./pageTwo/topBox"),
-    TwoLeftOne: () => import("./pageTwo/leftOne"),
-    TwoLeftTwo: () => import("./pageTwo/leftTwo"),
-    TwoCenterOne: () => import("./pageTwo/centerOne"),
-    TwoRightOne: () => import("./pageTwo/rightOne"),
-    TwoRightTwo: () => import("./pageTwo/rightTwo")
   },
   data() {
     return {
@@ -119,7 +62,8 @@ export default {
       changeIndex: 1,
       fontSize: "17px",
       titleSize: "22px",
-      labelSize: "20px"
+      labelSize: "20px",
+      isFullScreen: false
     };
   },
   mounted() {
@@ -127,16 +71,25 @@ export default {
     this.year = date.getFullYear();
 
     this.checkFullscreen();
-    window.onresize = this.checkFullscreen;
+    this.adjustLayout();
+    window.addEventListener('resize', this.onResize);
     document.addEventListener('fullscreenchange', this.onFullscreenChange);
   },
   beforeDestroy() {
+    window.removeEventListener('resize', this.onResize);
     document.removeEventListener('fullscreenchange', this.onFullscreenChange);
   },
   methods: {
+    onResize() {
+      this.checkFullscreen();
+      this.adjustLayout();
+    },
     checkFullscreen() {
       const clientHeight = document.documentElement.clientHeight || document.body.clientHeight;
       this.isFullScreen = screen.height == clientHeight;
+      this.updateFontSizes();
+    },
+    updateFontSizes() {
       if (this.isFullScreen) {
         this.fontSize = "18px";
         this.titleSize = "28px";
@@ -145,6 +98,20 @@ export default {
         this.fontSize = "15px";
         this.titleSize = "22px";
         this.labelSize = "20px";
+      }
+    },
+    adjustLayout() {
+      const aspectRatio = window.innerWidth / window.innerHeight;
+      if (aspectRatio != 16 / 10) {
+        // 宽屏设备
+        console.log("电视" +aspectRatio);
+        //this.fontSize = (parseInt(this.fontSize) - 1) + "px";
+        //this.titleSize = (parseInt(this.titleSize) - 1) + "px";
+        //this.labelSize = (parseInt(this.labelSize) - 1) + "px";
+      }
+      else {
+        console.log("电脑显示屏"+aspectRatio);
+
       }
     },
     onFullscreenChange() {
@@ -161,13 +128,6 @@ export default {
       this.changeIndex = v;
       console.log(v);
     },
-    handleClick(type, year) {
-      this.$refs.leftone.getList(type, year);
-      this.$refs.lefttwo.getList(type, year);
-      this.$refs.centerone.getList(type, year);
-      this.$refs.rightone.getList(type, year);
-      this.$refs.righttwo.getList(type, year);
-    },
     arrowClick(val) {
       if (val === "next") {
         this.$refs.cardShow.next();
@@ -179,102 +139,85 @@ export default {
 };
 </script>
 
-
 <style lang="less" scoped>
+.home-container {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+}
+
 .container-carousel-main {
   width: 100%;
-  height: 100vh;
-  .prev {
-    position: absolute;
-    left: 0;
-    top: 140%;
-    z-index: 99;
-  }
+  height: 100%;
+  position: relative;
+
+  .prev,
   .next {
     position: absolute;
-    right: 0;
-    top: 140%;
+    top: 50%;
+    transform: translateY(-50%);
     z-index: 99;
+    cursor: pointer;
+
+    img {
+      width: 40px;
+      height: 40px;
+    }
   }
-  img {
-    width: 40px;
-    height: 40px;
+
+  .prev {
+    left: 10px;
   }
+
+  .next {
+    right: 10px;
+  }
+
   .container-carousel-item {
-    width: 100%;
-    height: 100vh;
+    height: 100%;
     background-color: #010e3b;
-    .pageThree {
-      width: 100%;
+
+    .pageThree,
+    .pageOne {
       height: 100%;
-      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+
       .box-wrapper {
-        width: 100%;
-        height: calc(100% - 100px);
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
       }
     }
+
     .pageOne {
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
       .box-wrapper {
-        width: 100%;
-        height: calc(100% - 100px);
         .box-left {
           display: flex;
           width: 100%;
-          height: 65%;
+          flex: 3;
         }
+
         .box-right {
           width: 100%;
-          height: 30%;
-        }
-      }
-    }
-    .pageTwo {
-      width: 100%;
-      height: 100%;
-      .box-wrapper {
-        width: 100%;
-        height: calc(100% - 100px);
-        display: flex;
-        .left-box {
-          width: 28%;
-          height: 100%;
-          margin-left: 1%;
-        }
-        .center-box {
-          width: 48%;
-          height: 100%;
-          margin: 0 1%;
-          .center-top {
-            width: 100%;
-            height: 20%;
-            margin-top: 6%;
-          }
-          .center-main {
-            width: 100%;
-            height: 80%;
-          }
-        }
-        .right-box {
-          width: 28%;
-          height: 100%;
-          margin-right: 1%;
+          flex: 2;
         }
       }
     }
   }
 }
 
-::v-deep .el-button {
-  background-color: transparent;
+/deep/ .el-carousel__container {
+  height: 100% !important;
 }
-/* 按钮特效 */
+
 .el-button {
   position: relative;
   padding: 10px 30px;
-  // margin: 0 16.3%;
   color: #21ebff;
   text-decoration: none;
   font-size: 30px;
@@ -282,50 +225,44 @@ export default {
   transition: 0.5s;
   overflow: hidden;
   -webkit-box-reflect: below 1px linear-gradient(transparent, #0003);
-}
+  background-color: transparent;
 
-.el-button:hover {
-  background: #21ebff;
-  color: #111;
-  box-shadow: 0 0 50px #21ebff;
-  transition-delay: 0.2s;
-}
+  &:hover {
+    background: #21ebff;
+    color: #111;
+    box-shadow: 0 0 50px #21ebff;
+    transition-delay: 0.2s;
+  }
 
-.el-button::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 10px;
-  height: 10px;
-  border-top: 2px solid #21ebff;
-  border-left: 2px solid #21ebff;
-  transition: 0.5s;
-  transition-delay: 0.5s;
-}
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    transition: 0.5s;
+    transition-delay: 0.5s;
+  }
 
-.el-button:hover::before {
-  width: 100%;
-  height: 100%;
-  transition-delay: 0s;
-}
+  &::before {
+    top: 0;
+    left: 0;
+    border-top: 2px solid #21ebff;
+    border-left: 2px solid #21ebff;
+  }
 
-.el-button::after {
-  content: "";
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  width: 10px;
-  height: 10px;
-  border-bottom: 2px solid #21ebff;
-  border-right: 2px solid #21ebff;
-  transition: 0.5s;
-  transition-delay: 0.5s;
-}
+  &::after {
+    right: 0;
+    bottom: 0;
+    border-bottom: 2px solid #21ebff;
+    border-right: 2px solid #21ebff;
+  }
 
-.el-button:hover::after {
-  width: 100%;
-  height: 100%;
-  transition-delay: 0s;
+  &:hover::before,
+  &:hover::after {
+    width: 100%;
+    height: 100%;
+    transition-delay: 0s;
+  }
 }
 </style>
