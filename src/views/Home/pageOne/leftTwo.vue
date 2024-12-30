@@ -10,7 +10,7 @@
     <el-table
       class="box-table"
       ref="adultTable"
-      :data="subheadings == '门急诊' ? adultTable : childTable"
+      :data="subheadings == '张江院区' ? adultTable : childTable"
       height="80%"
       :style="{ '--fontSize': fontSize }"
     >
@@ -137,7 +137,7 @@ export default {
       adult: null,
       //
       child: null,
-      subheadings: "门急诊",
+      subheadings: "张江院区",
       count: 0
     };
   },
@@ -189,15 +189,15 @@ export default {
       }, 5 * 60 * 1000);
     },
     switchData() {
-      if (this.subheadings == "门急诊") {
+      if (this.subheadings == "张江院区") {
         this.subheadings = "出入院";
       } else {
-        this.subheadings = "门急诊";
+        this.subheadings = "张江院区";
       }
     },
     getList() {
       this.$axios
-        .post("/apis/visualizing/getTeamGridStatistics")
+        .post("/apis/visualizing/getTeamGridStatisticsForZhangJiang")
         .then(rs => {
           if (rs.data.statusCode != "200") {
             return;
@@ -210,6 +210,7 @@ export default {
             this.childTable = this.tableData[1].statistical;
           }
         })
+        
         .catch(err => {});
     }
   },
