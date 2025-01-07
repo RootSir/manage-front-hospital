@@ -197,7 +197,7 @@ export default {
     },
     getList() {
       this.$axios
-        .post("/apis/visualizing/getTeamGridStatisticsForZhangJiang")
+        .post("/apis/visualizing/")
         .then(rs => {
           if (rs.data.statusCode != "200") {
             return;

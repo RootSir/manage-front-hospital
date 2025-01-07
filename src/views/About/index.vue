@@ -192,19 +192,19 @@
                 <ul>
                   <li class="flex">
                     <p>今日异常量</p>
-                    <p>{{singlefetchBoxData4.today}}</p>
+                    <p>{{singlefetchBoxData5.today}}</p>
                   </li>
                   <li class="flex">
                     <p>月累计</p>
-                    <p>{{singlefetchBoxData4.monthTotal}}</p>
+                    <p>{{singlefetchBoxData5.monthTotal}}</p>
                   </li>
                   <li class="flex">
                     <p>季累计</p>
-                    <p>{{singlefetchBoxData4.quarterTotal}}</p>
+                    <p>{{singlefetchBoxData5.quarterTotal}}</p>
                   </li>
                   <li class="flex">
                     <p>年累计</p>
-                    <p>{{singlefetchBoxData4.yearTotal}}</p>
+                    <p>{{singlefetchBoxData5.yearTotal}}</p>
                   </li>
                 </ul>
               </div>
@@ -246,11 +246,11 @@
       <div class="flex1">
         <dv-border-box-12 class="bar-list" backgroundColor="#0f245d">
           <div class="border-box-title">张江院区缴款</div>
-          <ghyBar :operationType=4 :data="fetchBoxData4"    />
+          <ghyBar :operationType=4 :data="fetchBoxData3"    />
         </dv-border-box-12>
         <dv-border-box-12 class="bar-list" backgroundColor="#0f245d">
           <div class="border-box-title">张江院区缴款</div>
-          <ghyBar :operationType=5 :data="fetchBoxData4"  :color="['#62b2e6', '#57ed51', '#c3d894']" />
+          <ghyBar :operationType=5 :data="fetchBoxData3"  :color="['#62b2e6', '#57ed51', '#c3d894']" />
         </dv-border-box-12>
         <dv-border-box-12 title="div" class="bar-list" backgroundColor="#0f245d">
           <div class="border-box-title">轧账管理</div>
@@ -363,7 +363,7 @@ export default {
     },
     async getFetchBoxData1() {
       this.$axios
-        .post("/apis/visualizing/getDataLastSixMonths", {
+        .post("/apis/visualizing/getDataLastSixMonthsForZhangjiang", {
           operationType: 1
         })
         .then(rs => {
@@ -376,7 +376,7 @@ export default {
     },
     async getFetchBoxData2() {
       this.$axios
-        .post("/apis/visualizing/getDataLastSixMonths", {
+        .post("/apis/visualizing/getDataLastSixMonthsForZhangjiang", {
           operationType: 2
         })
         .then(rs => {
@@ -389,7 +389,7 @@ export default {
     },
     async getFetchBoxData3() {
       this.$axios
-        .post("/apis/visualizing/getDataLastSixMonths", {
+        .post("/apis/visualizing/getDataLastSixMonthsForZhangjiang", {
           operationType: 3
         })
         .then(rs => {
@@ -402,7 +402,7 @@ export default {
     },
     async getFetchBoxData4() {
       this.$axios
-        .post("/apis/visualizing/getDataLastSixMonths", {
+        .post("/apis/visualizing/getDataLastSixMonthsForZhangjiang", {
           operationType: 4
         })
         .then(rs => {
@@ -445,7 +445,7 @@ export default {
 
     async getSingleFetchBoxData1() {
       try {
-        const response = await this.$axios.post("/apis/visualizing/getDataStatisticsSingle", {
+        const response = await this.$axios.post("/apis/visualizing/getDataStatisticsSingleForZhangJiang", {
           operationType: 1  // 假设1代表取箱人次，您可能需要根据实际情况调整
         });
         
@@ -460,7 +460,7 @@ export default {
     },
     async getSingleFetchBoxData2() {
       try {
-        const response = await this.$axios.post("/apis/visualizing/getDataStatisticsSingle", {
+        const response = await this.$axios.post("/apis/visualizing/getDataStatisticsSingleForZhangJiang", {
           operationType: 2  // 假设1代表取箱人次，您可能需要根据实际情况调整
         });
         
@@ -475,8 +475,8 @@ export default {
     },
     async getSingleFetchBoxData3() {
       try {
-        const response = await this.$axios.post("/apis/visualizing/getDataStatisticsSingle", {
-          operationType: 3 // 假设1代表取箱人次，您可能需要根据实际情况调整
+        const response = await this.$axios.post("/apis/visualizing/getDataStatisticsSingleForZhangJiang", {
+          operationType: 4 // 4 代表张江
         });
         
         if (response.data.statusCode === 200) {
@@ -490,7 +490,7 @@ export default {
     },
     async getSingleFetchBoxData4() {
       try {
-        const response = await this.$axios.post("/apis/visualizing/getDataStatisticsSingle", {
+        const response = await this.$axios.post("/apis/visualizing/getDataStatisticsSingleForZhangJiang", {
           operationType: 4  // 假设1代表取箱人次，您可能需要根据实际情况调整
         });
         
@@ -505,7 +505,7 @@ export default {
     },
     async getSingleFetchBoxData5() {
       try {
-        const response = await this.$axios.post("/apis/visualizing/getDataStatisticsSingle", {
+        const response = await this.$axios.post("/apis/visualizing/getDataStatisticsSingleForZhangJiang", {
           operationType: 5 
                 });
         
@@ -520,7 +520,7 @@ export default {
     },
     async getSingleFetchBoxData6() {
       try {
-        const response = await this.$axios.post("/apis/visualizing/getDataStatisticsSingle", {
+        const response = await this.$axios.post("/apis/visualizing/getDataStatisticsSingleForZhangJiang", {
           operationType: 6  // 假设1代表取箱人次，您可能需要根据实际情况调整
         });
         
@@ -535,7 +535,7 @@ export default {
     },
     async getSingleFetchBoxData7() {
       try {
-        const response = await this.$axios.post("/apis/visualizing/getDataStatisticsSingle", {
+        const response = await this.$axios.post("/apis/visualizing/getDataStatisticsSingleForZhangJiang", {
           operationType: 7  // 假设1代表取箱人次，您可能需要根据实际情况调整
         });
         
@@ -564,14 +564,14 @@ export default {
       this.getFetchBoxData1();
       this.getFetchBoxData2();
       this.getFetchBoxData3();
-      this.getFetchBoxData4();
+      // this.getFetchBoxData4();
       this.getFetchBoxData5();
       this.getFetchBoxData6();
       // Set up intervals for each fetch method (5 minutes = 300000 milliseconds)
       setInterval(this.getFetchBoxData1, 300000);
       setInterval(this.getFetchBoxData2, 300000);
       setInterval(this.getFetchBoxData3, 300000);
-      setInterval(this.getFetchBoxData4, 300000);
+      // setInterval(this.getFetchBoxData4, 300000);
       setInterval(this.getFetchBoxData5, 300000);
       setInterval(this.getFetchBoxData6, 300000);
 
@@ -593,7 +593,7 @@ export default {
     clearInterval(this.getFetchBoxData1);
     clearInterval(this.getFetchBoxData2);
     clearInterval(this.getFetchBoxData3);
-    clearInterval(this.getFetchBoxData4);
+    // clearInterval(this.getFetchBoxData4);
     clearInterval(this.getFetchBoxData5);
     clearInterval(this.getFetchBoxData6);
   }
