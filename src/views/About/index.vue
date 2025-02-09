@@ -13,12 +13,12 @@
         </dv-border-box-12>
         <dv-border-box-12 class="bar-list" backgroundColor="#0f245d">
           <div class="border-box-title">存箱次数</div>
-          <ghyBar :operationType=1 :data="fetchBoxData2"  :color="['#62b2e6', '#57ed51', '#c3d894']" />
-         
+          <ghyBar :operationType=1 :data="fetchBoxData2" :color="['#62b2e6', '#57ed51', '#c3d894']" />
+
         </dv-border-box-12>
-        <dv-border-box-12 class="bar-list"  backgroundColor="#0f245d">
+        <dv-border-box-12 class="bar-list" backgroundColor="#0f245d">
           <div class="border-box-title">异常次数</div>
-          <ghyBar :operationType=3 :data="fetchBoxData3"  :color="['#62b2e6', '#f76a68', '#c3d894']" />
+          <ghyBar :operationType=3 :data="fetchBoxData3" :color="['#62b2e6', '#f76a68', '#c3d894']" />
         </dv-border-box-12>
       </div>
       <div class="middle-content flex flex-column">
@@ -90,7 +90,6 @@
                 </li>
               </ul>
             </div>
-
           </div>
           <div class="detail-list-container">
             <div class="detail-list-box detail-list-box-right">
@@ -127,45 +126,51 @@
               </ul>
             </div>
             <div class="detail-list-box detail-list-box-right">
-              <p class="title">张江院区缴款</p>
+              <p class="title">单日缴款对比</p>
               <ul>
-                <li class="flex">
-                  <p>今日缴费额</p>
-                  <p>{{ singlefetchBoxData3.today }}</p>
-                </li>
-                <li class="flex">
-                  <p>月累计</p>
-                  <p>{{ singlefetchBoxData3.monthTotal }}</p>
-                </li>
-                <li class="flex">
-                  <p>月同期</p>
-                  <p>{{ singlefetchBoxData3.monthSamePeriod }}</p>
-                </li>
-                <li class="flex">
-                  <p>季累计</p>
-                  <p>{{ singlefetchBoxData3.quarterTotal }}</p>
-                </li>
-                <li class="flex">
-                  <p>季同期</p>
-                  <p>{{ singlefetchBoxData3.quarterSamePeriod }}</p>
-                </li>
-                <li class="flex">
-                  <p>年累计</p>
-                  <p>{{ singlefetchBoxData3.yearTotal }}</p>
-                </li>
-                <li class="flex">
-                  <p>年同期</p>
-                  <p>{{ singlefetchBoxData3.yearSamePeriod }}</p>
-                </li>
+                  <li class="flex">
+                      <p>{{ formatDate(0) }}</p>
+                      <p>{{ singlefetchBoxData8.today }}</p>
+                  </li>
+                  <li class="flex">
+                      <p>{{ formatDate(1) }}</p>
+                      <p>{{ singlefetchBoxData8.day1 }}</p>
+                  </li>
+                  <li class="flex">
+                      <p>{{ formatDate(2) }}</p>
+                      <p>{{ singlefetchBoxData8.day2 }}</p>
+                  </li>
+                  <li class="flex">
+                      <p>{{ formatDate(3) }}</p>
+                      <p>{{ singlefetchBoxData8.day3 }}</p>
+                  </li>
+                  <li class="flex">
+                      <p>{{ formatDate(4) }}</p>
+                      <p>{{ singlefetchBoxData8.day4 }}</p>
+                  </li>
+                  <li class="flex">
+                      <p>{{ formatDate(5) }}</p>
+                      <p>{{ singlefetchBoxData8.day5 }}</p>
+                  </li>
+                  <li class="flex">
+                      <p>{{ formatDate(6) }}</p>
+                      <p>{{ singlefetchBoxData8.day6 }}</p>
+                  </li>
               </ul>
-            </div>
+          </div>
           </div>
           <div class="count-cail">
             <dv-decoration-9 style="width:100%;height:100%;" :dur="8">
               <div class="cool-ellipse">
                 <div class="cool-ellipse-content">
-                  <p class="title">{{currentDate}}收入</p>
-                  <p class="money">{{singlefetchBoxData7.today}}元</p>
+                  <p class="title">{{ currentDate }}收入</p>
+                  <p class="money">{{ singlefetchBoxData7.today }}元</p>
+                  <!-- 
+                  <p class="title">{{ yesterday }}收入</p>
+                  <p class="money">{{ singlefetchBoxData7.yesterday }}元</p>
+
+                  <p class="title">{{ thedaybeforeyesterday }}收入</p>
+                  <p class="money">{{ singlefetchBoxData7.thedaybeforeyesterday }}元</p> -->
                   <!-- <p>68.98%</p>
                   <el-progress :text-inside="true" :stroke-width="26" :percentage="70"></el-progress>
                   <p>总体执行率</p> -->
@@ -192,19 +197,19 @@
                 <ul>
                   <li class="flex">
                     <p>今日异常量</p>
-                    <p>{{singlefetchBoxData5.today}}</p>
+                    <p>{{ singlefetchBoxData5.today }}</p>
                   </li>
                   <li class="flex">
                     <p>月累计</p>
-                    <p>{{singlefetchBoxData5.monthTotal}}</p>
+                    <p>{{ singlefetchBoxData5.monthTotal }}</p>
                   </li>
                   <li class="flex">
                     <p>季累计</p>
-                    <p>{{singlefetchBoxData5.quarterTotal}}</p>
+                    <p>{{ singlefetchBoxData5.quarterTotal }}</p>
                   </li>
                   <li class="flex">
                     <p>年累计</p>
-                    <p>{{singlefetchBoxData5.yearTotal}}</p>
+                    <p>{{ singlefetchBoxData5.yearTotal }}</p>
                   </li>
                 </ul>
               </div>
@@ -222,19 +227,19 @@
                 <ul>
                   <li class="flex">
                     <p>今日金额</p>
-                    <p>{{singlefetchBoxData6.today}}</p>
+                    <p>{{ singlefetchBoxData6.today }}</p>
                   </li>
                   <li class="flex">
                     <p>月累计</p>
-                    <p>{{singlefetchBoxData6.monthTotal}}</p>
+                    <p>{{ singlefetchBoxData6.monthTotal }}</p>
                   </li>
                   <li class="flex">
                     <p>季累计</p>
-                    <p>{{singlefetchBoxData6.quarterTotal}}</p>
+                    <p>{{ singlefetchBoxData6.quarterTotal }}</p>
                   </li>
                   <li class="flex">
                     <p>年累计</p>
-                    <p>{{singlefetchBoxData6.yearTotal}}</p>
+                    <p>{{ singlefetchBoxData6.yearTotal }}</p>
                   </li>
                 </ul>
               </div>
@@ -246,15 +251,15 @@
       <div class="flex1">
         <dv-border-box-12 class="bar-list" backgroundColor="#0f245d">
           <div class="border-box-title">张江院区缴款</div>
-          <ghyBar :operationType=4 :data="fetchBoxData3"    />
+          <ghyBar :operationType=4 :data="fetchBoxData3" />
         </dv-border-box-12>
         <dv-border-box-12 class="bar-list" backgroundColor="#0f245d">
-          <div class="border-box-title">张江院区缴款</div>
-          <ghyBar :operationType=5 :data="fetchBoxData3"  :color="['#62b2e6', '#57ed51', '#c3d894']" />
+          <div class="border-box-title">单日缴款对比</div>
+          <ghyBar :operationType=5 :data="fetchBoxData7" :color="['#62b2e6', '#57ed51', '#c3d894']" />
         </dv-border-box-12>
         <dv-border-box-12 title="div" class="bar-list" backgroundColor="#0f245d">
           <div class="border-box-title">轧账管理</div>
-          <ghyBar :operationType=6 :data="fetchBoxData6"  :color="['#62b2e6', '#f76a68', '#c3d894']" />
+          <ghyBar :operationType=6 :data="fetchBoxData6" :color="['#62b2e6', '#f76a68', '#c3d894']" />
         </dv-border-box-12>
       </div>
     </div>
@@ -287,8 +292,11 @@ export default {
       fetchBoxData4: [],
       fetchBoxData5: [],
       fetchBoxData6: [],
+      fetchBoxData7: [],
 
       currentDate: '',
+      thedaybeforeyesterday: '',
+      yesterday: '',
       singlefetchBoxData1: {
         today: '',
         monthTotal: '',
@@ -351,12 +359,52 @@ export default {
         quarterSamePeriod: '',
         yearTotal: '',
         yearSamePeriod: ''
+      },
+      singlefetchBoxData8: {
+        today: '',
+        day1: '',  // 前1天
+        day2: '',  // 前2天
+        day3: '',  // 前3天
+        day4: '',  // 前4天
+        day5: '',  // 前5天
+        day6: '',  // 前5天
+
+        monthTotal: '',
+        monthSamePeriod: '',
+        quarterTotal: '',
+        quarterSamePeriod: '',
+        yearTotal: '',
+        yearSamePeriod: ''
       }
     }
   },
   methods: {
     getCurrentDate() {
       const date = new Date();
+      const month = String(date.getMonth() + 1).padStart(2, '0');
+      const day = String(date.getDate()).padStart(2, '0');
+      return `${month}月${day}日`;
+    },
+
+    formatDate(daysAgo) {
+        const date = new Date();
+        date.setDate(date.getDate() - daysAgo);
+        const month = date.getMonth() + 1;
+        const day = date.getDate();
+        return `${month}月${day}日`;
+    },
+
+    getYesterdayDate() {
+      const date = new Date();
+      date.setDate(date.getDate() - 1);
+      const month = String(date.getMonth() + 1).padStart(2, '0');
+      const day = String(date.getDate()).padStart(2, '0');
+      return `${month}月${day}日`;
+    },
+
+    getDayBeforeYesterdayDate() {
+      const date = new Date();
+      date.setDate(date.getDate() - 2);
       const month = String(date.getMonth() + 1).padStart(2, '0');
       const day = String(date.getDate()).padStart(2, '0');
       return `${month}月${day}日`;
@@ -372,7 +420,7 @@ export default {
           }
           this.fetchBoxData1 = rs.data.result.monthlyDataList;
         })
-        .catch(err => {});
+        .catch(err => { });
     },
     async getFetchBoxData2() {
       this.$axios
@@ -385,7 +433,7 @@ export default {
           }
           this.fetchBoxData2 = rs.data.result.monthlyDataList;
         })
-        .catch(err => {});
+        .catch(err => { });
     },
     async getFetchBoxData3() {
       this.$axios
@@ -398,7 +446,7 @@ export default {
           }
           this.fetchBoxData3 = rs.data.result.monthlyDataList;
         })
-        .catch(err => {});
+        .catch(err => { });
     },
     async getFetchBoxData4() {
       this.$axios
@@ -411,7 +459,7 @@ export default {
           }
           this.fetchBoxData4 = rs.data.result.monthlyDataList;
         })
-        .catch(err => {});
+        .catch(err => { });
     },
     async getFetchBoxData5() {
       this.$axios
@@ -424,7 +472,7 @@ export default {
           }
           this.fetchBoxData5 = rs.data.result.monthlyDataList;
         })
-        .catch(err => {});
+        .catch(err => { });
     },
     async getFetchBoxData6() {
       this.$axios
@@ -437,9 +485,22 @@ export default {
           }
           this.fetchBoxData6 = rs.data.result.monthlyDataList;
         })
-        .catch(err => {});
+        .catch(err => { });
     },
 
+    async getFetchBoxData7() {
+      this.$axios
+        .post("/apis/visualizing/getDataLastSixMonths", {
+          operationType: 7
+        })
+        .then(rs => {
+          if (rs.data.statusCode != "200") {
+            return;
+          }
+          this.fetchBoxData7 = rs.data.result.monthlyDataList;
+        })
+        .catch(err => { });
+    },
 
 
 
@@ -448,7 +509,7 @@ export default {
         const response = await this.$axios.post("/apis/visualizing/getDataStatisticsSingleForZhangJiang", {
           operationType: 1  // 假设1代表取箱人次，您可能需要根据实际情况调整
         });
-        
+
         if (response.data.statusCode === 200) {
           this.singlefetchBoxData1 = response.data.result;
         } else {
@@ -463,7 +524,7 @@ export default {
         const response = await this.$axios.post("/apis/visualizing/getDataStatisticsSingleForZhangJiang", {
           operationType: 2  // 假设1代表取箱人次，您可能需要根据实际情况调整
         });
-        
+
         if (response.data.statusCode === 200) {
           this.singlefetchBoxData2 = response.data.result;
         } else {
@@ -478,7 +539,7 @@ export default {
         const response = await this.$axios.post("/apis/visualizing/getDataStatisticsSingleForZhangJiang", {
           operationType: 4 // 4 代表张江
         });
-        
+
         if (response.data.statusCode === 200) {
           this.singlefetchBoxData3 = response.data.result;
         } else {
@@ -493,7 +554,7 @@ export default {
         const response = await this.$axios.post("/apis/visualizing/getDataStatisticsSingleForZhangJiang", {
           operationType: 4  // 假设1代表取箱人次，您可能需要根据实际情况调整
         });
-        
+
         if (response.data.statusCode === 200) {
           this.singlefetchBoxData4 = response.data.result;
         } else {
@@ -506,9 +567,9 @@ export default {
     async getSingleFetchBoxData5() {
       try {
         const response = await this.$axios.post("/apis/visualizing/getDataStatisticsSingleForZhangJiang", {
-          operationType: 5 
-                });
-        
+          operationType: 5
+        });
+
         if (response.data.statusCode === 200) {
           this.singlefetchBoxData5 = response.data.result;
         } else {
@@ -523,7 +584,7 @@ export default {
         const response = await this.$axios.post("/apis/visualizing/getDataStatisticsSingleForZhangJiang", {
           operationType: 6  // 假设1代表取箱人次，您可能需要根据实际情况调整
         });
-        
+
         if (response.data.statusCode === 200) {
           this.singlefetchBoxData6 = response.data.result;
         } else {
@@ -538,7 +599,7 @@ export default {
         const response = await this.$axios.post("/apis/visualizing/getDataStatisticsSingleForZhangJiang", {
           operationType: 7  // 假设1代表取箱人次，您可能需要根据实际情况调整
         });
-        
+
         if (response.data.statusCode === 200) {
           this.singlefetchBoxData7 = response.data.result;
         } else {
@@ -548,11 +609,27 @@ export default {
         console.error("Error fetching data:", error);
       }
     },
+    async getSingleFetchBoxData8() {
+      try {
+        const response = await this.$axios.post("/apis/visualizing/getDataStatisticsSingleForZhangJiang", {
+          operationType: 8  // 假设1代表取箱人次，您可能需要根据实际情况调整
+        });
 
+        if (response.data.statusCode === 200) {
+          this.singlefetchBoxData8 = response.data.result;
+        } else {
+          console.error("Failed to fetch data:", response.data.message);
+        }
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    },
     startDataFetching() {
       console.log("startDataFetching:");
 
       this.currentDate = this.getCurrentDate();
+      this.yesterday = this.getYesterdayDate();
+      this.thedaybeforeyesterday = this.getDayBeforeYesterdayDate();
       this.getSingleFetchBoxData1();
       this.getSingleFetchBoxData2();
       this.getSingleFetchBoxData3();
@@ -560,6 +637,8 @@ export default {
       this.getSingleFetchBoxData5();
       this.getSingleFetchBoxData6();
       this.getSingleFetchBoxData7();
+      this.getSingleFetchBoxData8();
+
       // Call all fetch methods initially
       this.getFetchBoxData1();
       this.getFetchBoxData2();
@@ -567,6 +646,8 @@ export default {
       // this.getFetchBoxData4();
       this.getFetchBoxData5();
       this.getFetchBoxData6();
+      this.getFetchBoxData7();
+
       // Set up intervals for each fetch method (5 minutes = 300000 milliseconds)
       setInterval(this.getFetchBoxData1, 300000);
       setInterval(this.getFetchBoxData2, 300000);
@@ -574,6 +655,7 @@ export default {
       // setInterval(this.getFetchBoxData4, 300000);
       setInterval(this.getFetchBoxData5, 300000);
       setInterval(this.getFetchBoxData6, 300000);
+      setInterval(this.getFetchBoxData7, 300000);
 
       setInterval(this.getSingleFetchBoxData1, 300000);
       setInterval(this.getSingleFetchBoxData2, 300000);
@@ -582,6 +664,7 @@ export default {
       setInterval(this.getSingleFetchBoxData5, 300000);
       setInterval(this.getSingleFetchBoxData6, 300000);
       setInterval(this.getSingleFetchBoxData7, 300000);
+      setInterval(this.getSingleFetchBoxData8, 300000);
 
     },
   },
@@ -601,7 +684,7 @@ export default {
 }
 </script>
 
-<style  scoped lang="less">
+<style scoped lang="less">
 .flex {
   display: flex;
 
@@ -834,7 +917,7 @@ export default {
     font-weight: 500;
     font-size: 0.2rem;
     line-height: 0.3rem;
-    margin-top: 0.1rem;
+    /*margin-top: 0.1rem;*/
   }
 
   .title {}
