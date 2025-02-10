@@ -128,10 +128,7 @@
             <div class="detail-list-box detail-list-box-right">
               <p class="title">单日缴款对比</p>
               <ul>
-                  <li class="flex">
-                      <p>{{ formatDate(0) }}</p>
-                      <p>{{ singlefetchBoxData8.today }}</p>
-                  </li>
+
                   <li class="flex">
                       <p>{{ formatDate(1) }}</p>
                       <p>{{ singlefetchBoxData8.day1 }}</p>
@@ -156,6 +153,10 @@
                       <p>{{ formatDate(6) }}</p>
                       <p>{{ singlefetchBoxData8.day6 }}</p>
                   </li>
+                  <li class="flex">
+                    <p>{{ formatDate(7) }}</p>
+                    <p>{{ singlefetchBoxData8.day7 }}</p>
+                </li>
               </ul>
           </div>
           </div>
@@ -255,8 +256,12 @@
         </dv-border-box-12>
         <dv-border-box-12 class="bar-list" backgroundColor="#0f245d">
           <div class="border-box-title">单日缴款对比</div>
-          <ghyBar :operationType=5 :data="fetchBoxData7" :color="['#62b2e6', '#57ed51', '#c3d894']" />
-        </dv-border-box-12>
+          <ghyBar 
+          :operationType="5" 
+          colomnforzhangjiang="同期"
+          :data="fetchBoxData7" 
+          :color="['#62b2e6', '#57ed51', '#c3d894']" 
+        />        </dv-border-box-12>
         <dv-border-box-12 title="div" class="bar-list" backgroundColor="#0f245d">
           <div class="border-box-title">轧账管理</div>
           <ghyBar :operationType=6 :data="fetchBoxData6" :color="['#62b2e6', '#f76a68', '#c3d894']" />
@@ -274,7 +279,7 @@ export default {
   name: 'About',
   components: {
     ghyBar,
-    topBox,
+    // topBox,
     scheduleBar
   },
   created() {
@@ -368,6 +373,8 @@ export default {
         day4: '',  // 前4天
         day5: '',  // 前5天
         day6: '',  // 前5天
+        day7: '',  // 前5天
+        day8: '',  // 前5天
 
         monthTotal: '',
         monthSamePeriod: '',
@@ -490,7 +497,7 @@ export default {
 
     async getFetchBoxData7() {
       this.$axios
-        .post("/apis/visualizing/getDataLastSixMonths", {
+        .post("/apis/visualizing/getDataLastSixMonthsForZhangjiang", {
           operationType: 7
         })
         .then(rs => {
