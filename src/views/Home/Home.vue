@@ -36,7 +36,9 @@
       <el-carousel-item class="container-carousel-item">
         <div class="pageThree">
           <One-Toptit ref="Toptit"></One-Toptit>
-          <fullScreen v-if="changeIndex === 2" />
+          <div class="box-wrapper"> <!-- 增加这个容器 -->
+            <fullScreen v-if="changeIndex === 2" />
+          </div>
         </div>
       </el-carousel-item>
     </el-carousel>
