@@ -33,7 +33,7 @@
         show-overflow-tooltip
       />
       <el-table-column prop="type" label="类型" align="center" />
-      <el-table-column prop="msgText" label="状态" align="center" width="200" />
+      <el-table-column prop="msgText" label="状态" align="center" width="250" />
       <el-table-column
         prop="createTime"
         label="时间"
@@ -91,7 +91,7 @@ export default {
     // 懒加载
     handleScroll() {
       // 标准浏览器中：定义一个形参event，但当事件触发的时候，并没有给event赋实际的值，
-      // 则浏览器会把”事件“的对象赋给这个形参e，这时这个e是个系统级的对象：事件；
+      // 则浏览器会把"事件"的对象赋给这个形参e，这时这个e是个系统级的对象：事件；
       const scrollTable = this.$refs.abnormalTable.bodyWrapper;
       const scrollDistance =
         // 正文全文高
