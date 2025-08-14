@@ -94,7 +94,7 @@
           </div>
           <div class="detail-list-container">
             <div class="detail-list-box detail-list-box-right">
-              <p class="title">门急诊缴款</p>
+              <p class="title">奉贤院区缴款</p>
               <ul>
                 <li class="flex">
                   <p>今日缴费额</p>
@@ -127,7 +127,7 @@
               </ul>
             </div>
             <div class="detail-list-box detail-list-box-right">
-              <p class="title">出入院缴款</p>
+              <p class="title">奉贤院区缴款</p>
               <ul>
                 <li class="flex">
                   <p>今日缴费额</p>
@@ -245,11 +245,11 @@
       </div>
       <div class="flex1">
         <dv-border-box-12 class="bar-list" backgroundColor="#0f245d">
-          <div class="border-box-title">门急诊缴款</div>
+          <div class="border-box-title">奉贤院区缴款</div>
           <ghyBar :operationType=4 :data="fetchBoxData4"    />
         </dv-border-box-12>
         <dv-border-box-12 class="bar-list" backgroundColor="#0f245d">
-          <div class="border-box-title">出入院缴款</div>
+          <div class="border-box-title">奉贤院区缴款</div>
           <ghyBar :operationType=5 :data="fetchBoxData5"  :color="['#62b2e6', '#57ed51', '#c3d894']" />
         </dv-border-box-12>
         <dv-border-box-12 title="div" class="bar-list" backgroundColor="#0f245d">
@@ -403,7 +403,7 @@ export default {
     async getFetchBoxData4() {
       this.$axios
         .post("/apis/visualizing/getDataLastSixMonths", {
-          operationType: 4
+          operationType: 7
         })
         .then(rs => {
           if (rs.data.statusCode != "200") {
@@ -416,7 +416,7 @@ export default {
     async getFetchBoxData5() {
       this.$axios
         .post("/apis/visualizing/getDataLastSixMonths", {
-          operationType: 5
+          operationType: 7
         })
         .then(rs => {
           if (rs.data.statusCode != "200") {
@@ -476,7 +476,7 @@ export default {
     async getSingleFetchBoxData3() {
       try {
         const response = await this.$axios.post("/apis/visualizing/getDataStatisticsSingle", {
-          operationType: 3 // 假设1代表取箱人次，您可能需要根据实际情况调整
+          operationType: 7 // 假设1代表取箱人次，您可能需要根据实际情况调整
         });
         
         if (response.data.statusCode === 200) {
@@ -491,7 +491,7 @@ export default {
     async getSingleFetchBoxData4() {
       try {
         const response = await this.$axios.post("/apis/visualizing/getDataStatisticsSingle", {
-          operationType: 4  // 假设1代表取箱人次，您可能需要根据实际情况调整
+          operationType: 7  // 假设1代表取箱人次，您可能需要根据实际情况调整
         });
         
         if (response.data.statusCode === 200) {
