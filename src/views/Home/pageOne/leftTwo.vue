@@ -1,119 +1,112 @@
 <template>
   <Box class="box-container" :title="title" :titleSize="titleSize">
-    <el-button
-      type="primary"
-      icon="el-icon-caret-right"
-      circle
-      @click="switchData"
-    ></el-button>
-    <h1 :style="{ '--labelSize': labelSize }">{{ subheadings }}</h1>
-    <el-table
-      class="box-table"
-      ref="adultTable"
-      :data="subheadings == '门急诊' ? adultTable : childTable"
-      height="80%"
-      :style="{ '--fontSize': fontSize }"
-    >
-      <el-table-column
-        prop="workTeamName"
-        label="分类"
-        align="center"
-        show-overflow-tooltip
-        width="200"
-      />
-      <el-table-column
-        prop="lockerGridNum"
-        label="格子总数"
-        align="center"
-        show-overflow-tooltip
-      />
-      <el-table-column
-        prop="waitReviewNum"
-        label="待复核数"
-        align="center"
-        show-overflow-tooltip
+    <!--  yxy备注：请这里修改成页面的布局（上二下一） -->
+    <div class="double-table-layout">
+      <h1 :style="{ '--labelSize': labelSize }">{{ adult }}</h1>
+      <el-table
+        class="box-table"
+        ref="adultTable"
+        :data="adultTable"
+        height="35%"
+        :style="{ '--fontSize': fontSize }"
       >
-      </el-table-column>
-      <el-table-column
-        prop="desirableNum"
-        label="可取数量"
-        align="center"
-        show-overflow-tooltip
-      />
-      <el-table-column
-        prop="reviewErrorNum"
-        label="复核错误"
-        align="center"
-        show-overflow-tooltip
-      />
-
-      <el-table-column
-        prop="waitSaveSilverBoxNum"
-        label="代存银箱"
-        align="center"
-        show-overflow-tooltip
-      />
-      <el-table-column
-        prop="stayStillSilverNum"
-        label="待还银箱"
-        align="center"
-        show-overflow-tooltip
-      />
-    </el-table>
-    <!-- <h2 :style="{ '--labelSize': labelSize }">{{ child }}</h2>
-    <el-table
-      class="box-table"
-      ref="childTable"
-      :data="childTable"
-      height="30%"
-      :style="{ '--fontSize': fontSize }"
-    >
-      <el-table-column
-        prop="workTeamName"
-        label="分类"
-        align="center"
-        show-overflow-tooltip
-        width="200"
-      />
-      <el-table-column
-        prop="lockerGridNum"
-        label="格子总数"
-        align="center"
-        show-overflow-tooltip
-      />
-      <el-table-column
-        prop="waitReviewNum"
-        label="待复核数"
-        align="center"
-        show-overflow-tooltip
+        <el-table-column
+          prop="workTeamName"
+          label="分类"
+          align="center"
+          show-overflow-tooltip
+          width="200"
+        />
+        <el-table-column
+          prop="lockerGridNum"
+          label="格子总数"
+          align="center"
+          show-overflow-tooltip
+        />
+        <el-table-column
+          prop="waitReviewNum"
+          label="待复核数"
+          align="center"
+          show-overflow-tooltip
+        />
+        <el-table-column
+          prop="desirableNum"
+          label="可取数量"
+          align="center"
+          show-overflow-tooltip
+        />
+        <el-table-column
+          prop="reviewErrorNum"
+          label="复核错误"
+          align="center"
+          show-overflow-tooltip
+        />
+        <el-table-column
+          prop="waitSaveSilverBoxNum"
+          label="代存银箱"
+          align="center"
+          show-overflow-tooltip
+        />
+        <el-table-column
+          prop="stayStillSilverNum"
+          label="待还银箱"
+          align="center"
+          show-overflow-tooltip
+        />
+      </el-table>
+      <h2 :style="{ '--labelSize': labelSize }">{{ child }}</h2>
+      <el-table
+        class="box-table"
+        ref="childTable"
+        :data="childTable"
+        height="35%"
+        :style="{ '--fontSize': fontSize }"
       >
-      </el-table-column>
-      <el-table-column
-        prop="desirableNum"
-        label="可取数量"
-        align="center"
-        show-overflow-tooltip
-      />
-      <el-table-column
-        prop="reviewErrorNum"
-        label="复核错误"
-        align="center"
-        show-overflow-tooltip
-      />
-
-      <el-table-column
-        prop="waitSaveSilverBoxNum"
-        label="代存银箱"
-        align="center"
-        show-overflow-tooltip
-      />
-      <el-table-column
-        prop="stayStillSilverNum"
-        label="待还银箱"
-        align="center"
-        show-overflow-tooltip
-      />
-    </el-table> -->
+        <el-table-column
+          prop="workTeamName"
+          label="分类"
+          align="center"
+          show-overflow-tooltip
+          width="200"
+        />
+        <el-table-column
+          prop="lockerGridNum"
+          label="格子总数"
+          align="center"
+          show-overflow-tooltip
+        />
+        <el-table-column
+          prop="waitReviewNum"
+          label="待复核数"
+          align="center"
+          show-overflow-tooltip
+        />
+        <el-table-column
+          prop="desirableNum"
+          label="可取数量"
+          align="center"
+          show-overflow-tooltip
+        />
+        <el-table-column
+          prop="reviewErrorNum"
+          label="复核错误"
+          align="center"
+          show-overflow-tooltip
+        />
+        <el-table-column
+          prop="waitSaveSilverBoxNum"
+          label="代存银箱"
+          align="center"
+          show-overflow-tooltip
+        />
+        <el-table-column
+          prop="stayStillSilverNum"
+          label="待还银箱"
+          align="center"
+          show-overflow-tooltip
+        />
+      </el-table>
+    </div>
   </Box>
 </template>
 
@@ -137,7 +130,6 @@ export default {
       adult: null,
       //
       child: null,
-      subheadings: "门急诊",
       count: 0
     };
   },
@@ -188,13 +180,6 @@ export default {
         }
       }, 5 * 60 * 1000);
     },
-    switchData() {
-      if (this.subheadings == "门急诊") {
-        this.subheadings = "出入院";
-      } else {
-        this.subheadings = "门急诊";
-      }
-    },
     getList() {
       this.$axios
         .post("/apis/visualizing/getTeamGridStatistics")
@@ -204,10 +189,10 @@ export default {
           }
           this.tableData = rs.data.result;
           if (this.tableData) {
-            this.adult = this.tableData[0].lockerName;
-            this.adultTable = this.tableData[0].statistical;
-            this.child = this.tableData[1].lockerName;
-            this.childTable = this.tableData[1].statistical;
+            this.adult = this.tableData[0] ? this.tableData[0].lockerName : "";
+            this.adultTable = this.tableData[0] ? this.tableData[0].statistical : [];
+            this.child = this.tableData[1] ? this.tableData[1].lockerName : "";
+            this.childTable = this.tableData[1] ? this.tableData[1].statistical : [];
           }
         })
         .catch(err => {});
@@ -228,17 +213,15 @@ export default {
   height: 100%;
   position: relative;
   margin-left: 0.5%;
-  .el-button {
-    position: absolute;
-    top: 50%;
-    right: 1%;
-    z-index: 99;
-  }
   .box-table {
     width: 98%;
     margin-left: 1%;
     font-size: var(--fontSize) !important;
   }
+}
+
+.double-table-layout {
+  height: 100%;
 }
 
 h1 {

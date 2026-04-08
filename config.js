@@ -1,7 +1,7 @@
 // node域名
 var host = 'localhost'
 // node端口
-var port = 8888
+var port = 18880
 // 摄像头账号
 var account = 'admin'
 // 摄像头密码

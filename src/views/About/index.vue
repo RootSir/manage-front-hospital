@@ -94,7 +94,7 @@
           </div>
           <div class="detail-list-container">
             <div class="detail-list-box detail-list-box-right">
-              <p class="title">三林院区</p>
+              <p class="title">门急诊缴款</p>
               <ul>
                 <li class="flex">
                   <p>今日缴费额</p>
@@ -127,7 +127,7 @@
               </ul>
             </div>
             <div class="detail-list-box detail-list-box-right">
-              <p class="title">源深院区</p>
+              <p class="title">出入院缴款</p>
               <ul>
                 <li class="flex">
                   <p>今日缴费额</p>
@@ -164,11 +164,12 @@
             <dv-decoration-9 style="width:100%;height:100%;" :dur="8">
               <div class="cool-ellipse">
                 <div class="cool-ellipse-content">
-                  <p class="title">{{currentDate}}收入</p>
-                  <p class="money">{{singlefetchBoxData7.today}}元</p>
-                  <!-- <p>68.98%</p>
-                  <el-progress :text-inside="true" :stroke-width="26" :percentage="70"></el-progress>
-                  <p>总体执行率</p> -->
+                  <p class="title">{{ currentDate }}</p>
+                  <div class="money-group">
+                    <p class="money-item">门诊收入{{ dailyIncomeMock.outpatient }}元</p>
+                    <p class="money-item">住院收入{{ dailyIncomeMock.inpatient }}元</p>
+                  </div>
+                  <!-- yxy备注：请这里修改成相关接口的数据 -->
                 </div>
 
               </div>
@@ -245,15 +246,18 @@
       </div>
       <div class="flex1">
         <dv-border-box-12 class="bar-list" backgroundColor="#0f245d">
-          <div class="border-box-title">三林院区</div>
+          <div class="border-box-title">门急诊缴款</div>
+          <!-- yxy备注：请这里修改成相关接口的数据 -->
           <ghyBar :operationType=4 :data="fetchBoxData4"    />
         </dv-border-box-12>
         <dv-border-box-12 class="bar-list" backgroundColor="#0f245d">
-          <div class="border-box-title">源深院区</div>
+          <div class="border-box-title">出入院缴款</div>
+          <!-- yxy备注：请这里修改成相关接口的数据 -->
           <ghyBar :operationType=5 :data="fetchBoxData5"  :color="['#62b2e6', '#57ed51', '#c3d894']" />
         </dv-border-box-12>
         <dv-border-box-12 title="div" class="bar-list" backgroundColor="#0f245d">
           <div class="border-box-title">轧账管理</div>
+          <!-- yxy备注：请这里修改成相关接口的数据 -->
           <ghyBar :operationType=6 :data="fetchBoxData6"  :color="['#62b2e6', '#f76a68', '#c3d894']" />
         </dv-border-box-12>
       </div>
@@ -289,6 +293,10 @@ export default {
       fetchBoxData6: [],
 
       currentDate: '',
+      dailyIncomeMock: {
+        outpatient: '12345.67',
+        inpatient: '8901.23'
+      },
       singlefetchBoxData1: {
         today: '',
         monthTotal: '',
@@ -829,12 +837,15 @@ export default {
     line-height: 0.3rem;
   }
 
-  .money {
+  .money-group {
+    margin-top: 0.06rem;
+  }
+
+  .money-item {
     color: #f9fd49;
     font-weight: 500;
-    font-size: 0.2rem;
-    line-height: 0.3rem;
-    margin-top: 0.1rem;
+    font-size: 0.14rem;
+    line-height: 0.24rem;
   }
 
   .title {}
