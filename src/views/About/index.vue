@@ -45,7 +45,7 @@
           </div>
           <div class="detail-list-container">
             <div class="detail-list-box detail-list-box-right">
-              <p class="title">门急诊缴款</p>
+              <p class="title">三林院区</p>
               <ul>
                 <li class="flex"><p>今日缴费额</p><p>{{ singlefetchBoxData3.today }}</p></li>
                 <li class="flex"><p>月累计</p><p>{{ singlefetchBoxData3.monthTotal }}</p></li>
@@ -57,7 +57,7 @@
               </ul>
             </div>
             <div class="detail-list-box detail-list-box-right">
-              <p class="title">出入院缴款</p>
+              <p class="title">源深院区</p>
               <ul>
                 <li class="flex"><p>今日缴费额</p><p>{{ singlefetchBoxData4.today }}</p></li>
                 <li class="flex"><p>月累计</p><p>{{ singlefetchBoxData4.monthTotal }}</p></li>
@@ -125,11 +125,11 @@
       </div>
       <div class="flex1">
         <dv-border-box-12 class="bar-list" backgroundColor="#0f245d">
-          <div class="border-box-title">门急诊缴款</div>
+          <div class="border-box-title">三林院区</div>
           <ghyBar :operationType="4" :data="fetchBoxData4" />
         </dv-border-box-12>
         <dv-border-box-12 class="bar-list" backgroundColor="#0f245d">
-          <div class="border-box-title">出入院缴款</div>
+          <div class="border-box-title">源深院区</div>
           <ghyBar :operationType="5" :data="fetchBoxData5" :color="['#62b2e6', '#57ed51', '#c3d894']" />
         </dv-border-box-12>
         <dv-border-box-12 title="div" class="bar-list" backgroundColor="#0f245d">
