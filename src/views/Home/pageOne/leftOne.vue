@@ -47,6 +47,14 @@
         show-overflow-tooltip
         width="300"
       />
+      <!-- 新加的一列：存箱时间 -->
+      <el-table-column
+        prop="storeTimeStr"
+        label="存箱时间"
+        align="center"
+        show-overflow-tooltip
+        width="300"
+      />
     </el-table>
   </Box1>
 </template>
@@ -136,7 +144,7 @@ export default {
     },
 
     throttleFun() {
-      this.throttle(this.handleScroll(), 1000);
+      this.throttle(this.handleScroll, 1000)(); // 修复了原代码中直接执行handleScroll()的问题，应传入函数引用
     },
     /*  */
     generateTimer() {
@@ -154,16 +162,16 @@ export default {
     },
     /*  */
     changeRow({ row }) {
-  if (row && 'amount' in row && row.amount !== "" && row.amount !== null) {
-    return {
-      color: "#fda01e"
-    };
-  } else {
-    return {
-      color: "white"
-    };
-  }
-},
+      if (row && 'amount' in row && row.amount !== "" && row.amount !== null) {
+        return {
+          color: "#fda01e"
+        };
+      } else {
+        return {
+          color: "white"
+        };
+      }
+    },
     /* 人员信息 */
     getList(pageNum, pageSize) {
       this.$axios
