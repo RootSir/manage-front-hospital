@@ -1,7 +1,7 @@
 <template>
   <div class="home-container">
     <el-carousel class="container-carousel-main" arrow="never" ref="cardShow" :interval="20000" @change="change"
-      :autoplay="true">
+      :autoplay="false">
       <div class="prev">
         <img src="../../assets/images/left.png" @click="arrowClick('prev')" />
       </div>
